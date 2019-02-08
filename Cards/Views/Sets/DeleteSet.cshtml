@@ -1,0 +1,15 @@
+﻿
+
+@{
+    ViewBag.Title = "DeleteSet";
+}
+
+<h2>DeleteSet</h2>
+@using (Html.BeginForm())
+{
+<div>
+    Are you sure you want to delete entry @Request.Url.Segments.Last() ?
+    <input type="submit" />
+</div>
+}
+

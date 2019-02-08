@@ -1,0 +1,21 @@
+﻿@model Cards.ViewModels.EditSetViewModel
+
+
+@{
+    ViewBag.Title = "EditSet";
+
+}
+
+<h2>EditSet</h2>
+@using (Html.BeginForm())
+{
+    <div>
+        @Html.LabelFor(m => m.Set.Name)
+        @Html.TextBoxFor(m => m.Set.Name)
+    </div>
+    <div>
+        @Html.LabelFor(m => m.Set.Description)
+        @Html.TextBoxFor(m => m.Set.Description)
+    </div>
+    <input type="submit" />
+}
