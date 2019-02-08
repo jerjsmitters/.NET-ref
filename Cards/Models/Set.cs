@@ -11,6 +11,7 @@ namespace Cards.Models
         {
             Date = DateTime.Now;
         }
+
         public int SetId { get; set; }
         public DateTime Date { get; set; }
 
@@ -20,7 +21,7 @@ namespace Cards.Models
 
 
         //public List<Subject> Subjects { get; set; }
-        //public List<Card> Cards { get; set; }
+       //public List<Card> Cards { get; set; }
         //User
     }
 }

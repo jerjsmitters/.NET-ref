@@ -12,6 +12,6 @@ namespace Cards.Models
         public string Back { get; set; }
         public string Hint { get; set; }
 
-       // public Set Set { get; set; }
+        //public Set Set { get; set; }
     }
 }

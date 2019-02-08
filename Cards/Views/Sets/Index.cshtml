@@ -1,19 +1,20 @@
-﻿
+﻿@model Cards.ViewModels.IndexSetViewModel
+
 @{
     ViewBag.Title = "Index";
 }
 
 <h2>Sets</h2>
-<h5>@ViewBag.Sets.Count Available!</h5>
+<h5>@Model.SetCount Available!</h5>
 <a href="@Url.Action("AddSet", "Sets")">Add set</a>
 <ul>
-    @foreach (var set in ViewBag.Sets)
-     {
-    <li>
-        @set.Name
-        <a href="@Url.Action("EditSet", "Sets", new {SetId = set.SetId})">Edit</a>
-        <a href="@Url.Action("DeleteSet", "Sets", new {SetId = set.SetId})">Delete</a>
-    </li>
-     }
-    </ul>
+    @foreach (var set in Model.Sets)
+    {
+        <li>
+            <a href="@Url.Action("ShowSet", "Sets", new {SetId = set.SetId})">@set.Name</a>
+            <a href="@Url.Action("EditSet", "Sets", new {SetId = set.SetId})">Edit</a>
+            <a href="@Url.Action("DeleteSet", "Sets", new {SetId = set.SetId})">Delete</a>
+        </li>
+    }
+</ul>
 

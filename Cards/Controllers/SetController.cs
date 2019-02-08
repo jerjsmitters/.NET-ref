@@ -17,8 +17,9 @@ namespace Cards.Controllers
         /// </summary>
         public ActionResult Index()
         {
-            ViewBag.Sets = Repository.GetAll();
-            return View();
+            var viewModel = new IndexSetViewModel();
+            viewModel.Sets = Repository.GetAll();
+            return View(viewModel);
         }
         
 
@@ -43,7 +44,7 @@ namespace Cards.Controllers
 
             Repository.Add(set);
 
-            return View(viewModel);
+            return RedirectToAction("Index");
         }
 
         /// <summary>
@@ -52,6 +53,7 @@ namespace Cards.Controllers
         public ActionResult ShowSet(int? setId)
         {
             var set = Repository.Get(setId);
+
             return View();
         }
 
