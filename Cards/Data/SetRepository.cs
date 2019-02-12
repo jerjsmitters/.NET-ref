@@ -21,12 +21,14 @@ namespace Cards.Data
         {
             return _context.Sets
                 .OrderBy(s => s.Date)
+                .Include(s => s.Cards)
                 .ToList();
         }
 
         public Set Get(int? setId)
         {
             return _context.Sets
+                .Include(s => s.Cards)
                 .SingleOrDefault(s => s.SetId == setId);
         }
 

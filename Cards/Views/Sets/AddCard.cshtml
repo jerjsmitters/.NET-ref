@@ -1,7 +1,36 @@
-﻿
+﻿@model Cards.ViewModels.AddCardViewModel
+
 @{
-    ViewBag.Title = "AddCard";
+    Layout = null;
 }
 
-<h2>AddCard</h2>
+<!DOCTYPE html>
 
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>AddCard</title>
+</head>
+<body>
+    <div>
+        <h2>Add Card</h2>
+        @using (Html.BeginForm())
+        {
+            <div>
+                @Html.LabelFor(m => m.Card.Front)
+                @Html.TextBoxFor(m => m.Card.Front)
+            </div>
+            <div>
+                @Html.LabelFor(m => m.Card.Back)
+                @Html.TextBoxFor(m => m.Card.Back)
+            </div>
+            <div>
+                @Html.LabelFor(m => m.Card.Hint)
+                @Html.TextBoxFor(m => m.Card.Hint)
+            </div>
+            @Html.HiddenFor(m => m.Card.SetId)
+            <input type="submit" />
+        }
+    </div>
+</body>
+</html>

@@ -1,4 +1,4 @@
-﻿
+﻿@model Cards.ViewModels.ShowSetViewModel
 @{
     Layout = null;
 }
@@ -8,11 +8,25 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>ShowSet</title>
+    <title>@Model.Set.Name</title>
 </head>
 <body>
-    <div> 
-        
-    </div>
+    <h4>@Model.Set.Name</h4>
+    <a href="@Url.Action("Index", "Sets")">Back</a>
+    <a href="@Url.Action("AddCard", "Sets", new {SetId = Model.Set.SetId})">Add Card</a>
+    <ul>
+        @foreach (var card in Model.Set.Cards)
+        {
+            <li>
+                <ul>
+                    <li>@card.Front</li>
+                    <li>@card.Back</li>
+                </ul>
+                <a href="@Url.Action("EditCard", "Sets", new {SetId = Model.Set.SetId, CardId = card.CardId})">Edit</a>
+                <a href="@Url.Action("DeleteCard", "Sets", new {SetId = Model.Set.SetId, CardId = card.CardId})">Delete</a>
+            </li>
+        }
+    </ul>
+
 </body>
 </html>

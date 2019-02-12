@@ -17,5 +17,6 @@
         @Html.LabelFor(m => m.Set.Description)
         @Html.TextBoxFor(m => m.Set.Description)
     </div>
+    @Html.HiddenFor(m => m.Set.SetId)
     <input type="submit" />
 }

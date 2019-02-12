@@ -17,8 +17,10 @@ namespace Cards.Controllers
         /// </summary>
         public ActionResult Index()
         {
-            var viewModel = new IndexSetViewModel();
-            viewModel.Sets = Repository.GetAll();
+            var viewModel = new IndexSetViewModel
+            {
+                Sets = SetRepository.GetAll()
+            };
             return View(viewModel);
         }
         
@@ -42,7 +44,7 @@ namespace Cards.Controllers
             var set = new Set();
             set = viewModel.Set;
 
-            Repository.Add(set);
+            SetRepository.Add(set);
 
             return RedirectToAction("Index");
         }
@@ -52,9 +54,12 @@ namespace Cards.Controllers
         /// </summary>
         public ActionResult ShowSet(int? setId)
         {
-            var set = Repository.Get(setId);
-
-            return View();
+            var set = SetRepository.Get(setId);
+            var viewModel = new ShowSetViewModel
+            {
+                Set = set
+            };
+            return View(viewModel);
         }
 
         /// <summary>
@@ -62,7 +67,7 @@ namespace Cards.Controllers
         /// </summary> 
         public ActionResult DeleteSet(int? setId)
         {
-            var set = Repository.Get(setId);
+            var set = SetRepository.Get(setId);
             return View(set);
         }
 
@@ -70,7 +75,7 @@ namespace Cards.Controllers
         [ActionName("DeleteSet")]
         public ActionResult DeleteSetPost(int setId)
         {
-            Repository.Delete(setId);
+            SetRepository.Delete(setId);
             return RedirectToAction("Index");
         }
 
@@ -79,41 +84,38 @@ namespace Cards.Controllers
         /// </summary>
         public ActionResult EditSet(int? setId)
         {
-            var set = Repository.Get(setId);
-            var viewModel = new EditSetViewModel();
-            viewModel.Set = set;
+            var set = SetRepository.Get(setId);
+            var viewModel = new EditSetViewModel
+            {
+                Set = set
+            };
             return View(viewModel);
-        }
-        
+        }        
 
         /// <summary>
         /// Edit a set (post)
         /// </summary>
-        [HttpPost]
-        public ActionResult EditSet(EditSetViewModel viewModel, int setId)
+        [HttpPost]                          
+        public ActionResult EditSet(EditSetViewModel viewModel)
         {
             if (ModelState.IsValid)
             {
                 var set = viewModel.Set;
-                set.SetId = setId;
-                Repository.Edit(set);
+                SetRepository.Edit(set);
                 return RedirectToAction("Index");
             }
             return View(viewModel);
-        }
+        } 
 
 
         /// <summary>
-        /// Add card to set (get) ~/sets/{setId}/add
+        /// Add card to set (get) ~/sets/addcard/{setId}
         /// </summary>
         public ActionResult AddCard(int setId)
         {
-            var modelView = new Card()
-            {
-
-            };
-
-            return View(modelView);
+            var viewModel = new AddCardViewModel();
+            viewModel.Card.SetId = setId;
+            return View(viewModel);
         }
 
 
@@ -121,9 +123,14 @@ namespace Cards.Controllers
         /// Add card to set (post)
         /// </summary>
         [HttpPost]
-        public ActionResult AddCard(Card viewModel)
+        public ActionResult AddCard(AddCardViewModel viewModel)
         {
-            return View();
+            var card = new Card();
+            card = viewModel.Card;
+            card.Set = SetRepository.Get(card.SetId);
+
+            CardRepository.Add(card);
+            return RedirectToAction("ShowSet", new { setId = card.SetId });
         }
 
 
@@ -132,11 +139,11 @@ namespace Cards.Controllers
         /// </summary>
         public ActionResult EditCard(int setId, int cardId)
         {
-            var viewModel = new Card()
+            var viewModel = new EditCardViewModel()
             {
-
+                Card = CardRepository.Get(setId, cardId)
             };
-            return View();
+            return View(viewModel);
         }
        
 
@@ -144,9 +151,12 @@ namespace Cards.Controllers
         /// Edit card in set (post)
         /// </summary>
         [HttpPost]
-        public ActionResult EditCard() //addcardviewmodel
+        public ActionResult EditCard(EditCardViewModel viewModel)
         {
-            return View();
+            var card = new Card();
+            card = viewModel.Card;
+            CardRepository.Add(card);
+            return RedirectToAction("ShowSet", new { SetId = card.SetId });
         }
 
         /// <summary>
@@ -154,8 +164,15 @@ namespace Cards.Controllers
         /// </summary>
         public ActionResult DeleteCard(int setId, int cardId)
         {
-            return View();
+            var card = CardRepository.Get(setId, cardId);
+            return View(card);
         }
-        
+
+        [HttpPost, ActionName("DeleteCard")]
+        public ActionResult DeleteCardPost(int setId, int cardId)
+        {
+            CardRepository.Delete(setId, cardId);
+            return RedirectToAction("ShowSet", new { SetId = setId });
+        }
     }
 }

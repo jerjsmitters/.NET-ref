@@ -11,12 +11,16 @@ namespace Cards.Controllers
     {
         protected Context _context = null;
 
-        protected SetRepository Repository { get; set; }
+        protected SetRepository SetRepository { get; set; }
+        protected CardRepository CardRepository { get; set; }
+        protected SubjectRepository SubjectRepository { get; set; }
 
         public BaseController()
         {
             _context = new Context();
-            Repository = new SetRepository(_context);
+            SetRepository = new SetRepository(_context);
+            CardRepository = new CardRepository(_context);
+            SubjectRepository = new SubjectRepository(_context);
         }
 
         private bool _disposed = false;

@@ -14,22 +14,10 @@ namespace Cards
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
-                name: "Show sets, add set",
-                url: "{controller}/{action}",
-                defaults: new { controller = "Sets", action = "Index"}
+                name: "Universal",
+                url: "{controller}/{action}/{id}",
+                defaults: new { controller = "Sets", action = "Index", id = UrlParameter.Optional}
             );
-
-            routes.MapRoute(
-               name: "Edit set, delete set, add card",
-               url: "{controller}/{action}/{setid}",
-               defaults: new { controller = "Sets", action = "Edit", setid = "1" }
-           );
-
-            routes.MapRoute(
-               name: "Edit card, delete card",
-               url: "{controller}/show/{setid}/{cardid}/{action}",
-               defaults: new { controller = "Sets", action = "Edit", setid = "1" }
-           );
         }
     }
 }

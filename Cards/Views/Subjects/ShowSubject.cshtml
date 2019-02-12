@@ -1,0 +1,24 @@
+﻿@model Cards.ViewModels.ShowSubjectViewModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ShowSubject</title>
+</head>
+<body>
+    <div> 
+        <ul>
+        @foreach(var set in Model.Subject.Sets)
+        {
+            <li><a href="@Url.Action("ShowSet", "Sets", new {SetId = set.SetId})">@set.Name</a></li>
+        }
+        </ul>
+    </div>
+</body>
+</html>

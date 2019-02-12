@@ -5,7 +5,7 @@
     ViewBag.Title = "AddSet";
 }
 
-<h2>AddSet</h2>
+<h2>Add Set</h2>
 @using (Html.BeginForm())
 {
     <div>
@@ -15,6 +15,10 @@
     <div>
         @Html.LabelFor(m => m.Set.Description)
         @Html.TextBoxFor(m => m.Set.Description)
+    </div>
+    <div>
+        @Html.LabelFor(m => m.Set.Subject.Name)
+        @Html.TextBoxFor(m => m.Set.Subject.Name)
     </div>
     <input type="submit" />
 }

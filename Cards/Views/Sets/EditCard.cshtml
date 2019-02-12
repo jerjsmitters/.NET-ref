@@ -1,7 +1,37 @@
-﻿
+﻿@model Cards.ViewModels.EditCardViewModel
+
 @{
     ViewBag.Title = "EditCard";
 }
 
-<h2>EditCard</h2>
+<!DOCTYPE html>
 
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Edit card</title>
+</head>
+<body>
+    <div>
+        <h2>Edit Card</h2>
+        @using (Html.BeginForm())
+        {
+            <div>
+                @Html.LabelFor(m => m.Card.Front)
+                @Html.TextBoxFor(m => m.Card.Front)
+            </div>
+            <div>
+                @Html.LabelFor(m => m.Card.Back)
+                @Html.TextBoxFor(m => m.Card.Back)
+            </div>
+            <div>
+                @Html.LabelFor(m => m.Card.Hint)
+                @Html.TextBoxFor(m => m.Card.Hint)
+            </div>
+            @Html.HiddenFor(m => m.Card.SetId)
+            @Html.HiddenFor(m => m.Card.CardId)
+            <input type="submit" />
+        }
+    </div>
+</body>
+</html>
