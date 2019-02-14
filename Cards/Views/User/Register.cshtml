@@ -1,0 +1,23 @@
+﻿@model Cards.ViewModels.RegisterViewModel
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div>
+    @using (Html.BeginForm())
+    {
+        @Html.LabelFor(m => m.Email)
+        @Html.TextBoxFor(m => m.Email)
+
+        @Html.LabelFor(m => m.Password)
+        @Html.TextBoxFor(m => m.Password)
+
+        @Html.LabelFor(m => m.ConfirmPassword)
+        @Html.TextBoxFor(m => m.ConfirmPassword)
+
+        <input type="submit" />
+    }
+</div>
+

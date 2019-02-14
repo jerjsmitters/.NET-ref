@@ -1,0 +1,21 @@
+﻿@model Cards.ViewModels.SignInViewModel
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+    @using (Html.BeginForm())
+    {
+    <div>
+        @Html.LabelFor(m => m.Email)
+        @Html.TextBoxFor(m => m.Email)
+
+        @Html.LabelFor(m => m.Password)
+        @Html.TextBoxFor(m => m.Password)
+        <label>
+            @Html.CheckBoxFor(m => m.RememberMe) @Html.DisplayNameFor(m => m.RememberMe)
+        </label>
+        <input type="submit" />
+    </div>
+    }

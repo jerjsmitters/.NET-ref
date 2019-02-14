@@ -1,24 +1,14 @@
 ﻿@model Cards.ViewModels.IndexSubjectViewModel
 
 @{
-    Layout = null;
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
-</head>
-<body>
-    <div> 
-        <ul>
-           @foreach(var subj in Model.Subjects)
-           {
-               <li><a href="@Url.Action("ShowSubject", "Subjects", new {SubjectId = subj.SubjectId})">@subj.Name</a> (@subj.SetCount Available)</li>
-           }
-        </ul>
-    </div>
-</body>
-</html>
+<div> 
+    <ul>
+        @foreach (var subj in Model.Subjects)
+        {
+            <li><a href="@Url.Action("ShowSubject", "Subjects", new {SubjectId = subj.SubjectId})">@subj.Name</a> (@subj.SetCount Available)</li>
+        }
+    </ul>
+</div>

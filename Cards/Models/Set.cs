@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -13,9 +14,13 @@ namespace Cards.Models
         }
 
         public int SetId { get; set; }
-        public DateTime Date { get; set; }
-
+        public DateTime Date { get; private set; }
+        
+        [Required(ErrorMessage = "Set name is required.")]
+        [MaxLength(50, ErrorMessage = "Set name must not exceed 50 characters")]
         public string Name { get; set; }
+
+        [MaxLength(250, ErrorMessage = "Description must not exceed 250 characters.")]
         public string Description { get; set; }
 
         public Subject Subject { get; set; } = new Subject();
@@ -27,6 +32,6 @@ namespace Cards.Models
                 return Cards.Count;
             }
         }
-        //User
+        //To do: public User User { get; set; }
     }
 }

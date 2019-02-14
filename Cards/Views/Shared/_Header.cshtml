@@ -1,0 +1,44 @@
+﻿@{ 
+    string AddSetController = "User";
+    string AddSetAction = "SignIn";
+    if (Request.IsAuthenticated)
+    {
+        AddSetController = "Sets";
+        AddSetAction = "AddSet";
+    }
+}
+
+<div id="nav-bar">
+    <div id="set-bar">
+        <ul>
+            <li>@Html.ActionLink("Browse Sets", "Index", "Sets")</li>
+            <li>@Html.ActionLink("Browse Subjects", "Index", "Subjects")</li>
+            <li>
+                @Html.ActionLink("Add Set", AddSetAction, AddSetController)
+            </li>            
+        </ul>
+    </div>
+    
+    <div id="user-bar">
+        <ul>
+            @if (!Request.IsAuthenticated)
+            {
+                <li>@Html.ActionLink("Sign In", "SignIn", "User")</li>
+                <li>@Html.ActionLink("Register", "Register", "User")</li>
+            }
+            else
+            {
+                <li>@User.Identity.Name</li>
+                <li>My Sets</li>
+                <li>
+                    @using (Html.BeginForm("SignOut", "User", FormMethod.Post))
+                    {
+                        <button type="submit">
+                            Sign Out
+                        </button>
+                    }
+                </li>
+            }
+        </ul>        
+    </div>
+</div>

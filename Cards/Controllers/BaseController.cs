@@ -9,18 +9,11 @@ namespace Cards.Controllers
 {
     public abstract class BaseController : Controller
     {
-        protected Context _context = null;
+        private Context _context;
 
-        protected SetRepository SetRepository { get; set; }
-        protected CardRepository CardRepository { get; set; }
-        protected SubjectRepository SubjectRepository { get; set; }
-
-        public BaseController()
+        public BaseController(Context context)
         {
-            _context = new Context();
-            SetRepository = new SetRepository(_context);
-            CardRepository = new CardRepository(_context);
-            SubjectRepository = new SubjectRepository(_context);
+            _context = context;
         }
 
         private bool _disposed = false;

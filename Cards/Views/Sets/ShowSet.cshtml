@@ -1,16 +1,9 @@
 ﻿@model Cards.ViewModels.ShowSetViewModel
 @{
-    Layout = null;
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>@Model.Set.Name</title>
-</head>
-<body>
+<!--To do: Button for cram mode-->
+<div>
     <h4>@Model.Set.Name</h4>
     <a href="@Url.Action("Index", "Sets")">Back</a>
     <a href="@Url.Action("AddCard", "Sets", new {SetId = Model.Set.SetId})">Add Card</a>
@@ -27,6 +20,4 @@
             </li>
         }
     </ul>
-
-</body>
-</html>
+</div>

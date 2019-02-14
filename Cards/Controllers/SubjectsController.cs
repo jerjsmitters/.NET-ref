@@ -1,4 +1,5 @@
-﻿using Cards.ViewModels;
+﻿using Cards.Data;
+using Cards.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,13 @@ namespace Cards.Controllers
 {
     public class SubjectsController : BaseController
     {
+        private SubjectRepository _subjectRepository;
+
+        public SubjectsController(SubjectRepository subjectRepository, Context context)
+            : base(context)
+        {
+            _subjectRepository = subjectRepository;
+        }
         /// <summary>
         /// List all subjects
         /// </summary>
@@ -16,7 +24,7 @@ namespace Cards.Controllers
         {
             var viewModel = new IndexSubjectViewModel()
             {
-                Subjects = SubjectRepository.GetAll()
+                Subjects = _subjectRepository.GetAll()
             };
 
             return View(viewModel);
@@ -29,7 +37,7 @@ namespace Cards.Controllers
         {
             var viewModel = new ShowSubjectViewModel()
             {
-                Subject = SubjectRepository.Get(subjectId)
+                Subject = _subjectRepository.Get(subjectId)
             };
 
             return View(viewModel);
