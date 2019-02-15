@@ -51,5 +51,12 @@ namespace Cards.Data
             _context.Sets.Remove(set);
             _context.SaveChanges();
         }
+
+        public bool EntryOwnedByUser(int setId, string userId)
+        {
+            return _context.Sets
+             .Where(s => s.SetId == setId && s.UserId == userId)
+             .Count() == 1;
+        }
     }
 }

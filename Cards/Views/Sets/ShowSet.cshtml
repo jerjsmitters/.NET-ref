@@ -1,12 +1,28 @@
 ﻿@model Cards.ViewModels.ShowSetViewModel
+@using Microsoft.AspNet.Identity
+@using Cards.Models
+
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
+@{
+    string UserVisibility(Set set)
+    {
+        var userId = User.Identity.GetUserId();
+        return (userId == set.UserId) ? "visible" : "hidden";
+    }
+}
+
 <!--To do: Button for cram mode-->
 <div>
     <h4>@Model.Set.Name</h4>
+    <h5>Owner: @Model.Set.User.UserName</h5>
     <a href="@Url.Action("Index", "Sets")">Back</a>
-    <a href="@Url.Action("AddCard", "Sets", new {SetId = Model.Set.SetId})">Add Card</a>
+    <a href="@Url.Action("AddCard", "Sets", new {SetId = Model.Set.SetId})"
+       style="visibility: @UserVisibility(Model.Set)">
+        Add Card
+    </a>
     <ul>
         @foreach (var card in Model.Set.Cards)
         {
@@ -15,8 +31,10 @@
                     <li>@card.Front</li>
                     <li>@card.Back</li>
                 </ul>
-                <a href="@Url.Action("EditCard", "Sets", new {SetId = Model.Set.SetId, CardId = card.CardId})">Edit</a>
-                <a href="@Url.Action("DeleteCard", "Sets", new {SetId = Model.Set.SetId, CardId = card.CardId})">Delete</a>
+                <a href="@Url.Action("EditCard", "Sets", new {SetId = Model.Set.SetId, CardId = card.CardId})"
+                   style="visibility: @UserVisibility(Model.Set)">Edit</a>
+                <a href="@Url.Action("DeleteCard", "Sets", new {SetId = Model.Set.SetId, CardId = card.CardId})"
+                   style="visibility: @UserVisibility(Model.Set)">Delete</a>
             </li>
         }
     </ul>

@@ -8,6 +8,7 @@ namespace Cards.Models
 {
     public class User : IdentityUser
     {
-        //To do: public List<Set> Sets = new List<Set>();
+        public List<Set> Sets = new List<Set>();
+        //Favourite sets
     }
 }

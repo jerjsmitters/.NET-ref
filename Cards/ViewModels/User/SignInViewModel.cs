@@ -9,9 +9,9 @@ namespace Cards.ViewModels
     public class SignInViewModel
     {
         [Display(Name = "Email address")]
-        [Required(ErrorMessage = "Email address is required")]
-        [EmailAddress(ErrorMessage = "Invalid Email Address")]
-        public string Email { get; set; }
+        [Required(ErrorMessage = "Username is required")]
+        [RegularExpression(@"^[a-zA-Z0-9\-\_]+$", ErrorMessage = "No spaces or special character (apart from - and _) allowed")]
+        public string Username { get; set; }
 
         [Required(ErrorMessage = "Password is required")]
         [StringLength(255, ErrorMessage = "Must be between 5 and 255 characters", MinimumLength = 5)]

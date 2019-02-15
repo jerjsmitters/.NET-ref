@@ -1,10 +1,12 @@
 ﻿using Cards.Data;
 using Cards.Models;
 using Cards.ViewModels;
+using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 
@@ -42,11 +44,17 @@ namespace Cards.Controllers
         /// </summary> 
         public ActionResult AddSet()
         {
+            //Check to see if user is logged in
+            if (!User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("SignIn", "User");
+            }
+
             var viewModel = new AddSetViewModel();
             return View(viewModel);
         }
-        //To do: Only logged in people can add
-        //To do: Added set should be associated with user
+        
+        
 
         /// <summary>
         /// Add a set (post)
@@ -54,23 +62,35 @@ namespace Cards.Controllers
         [HttpPost]
         public ActionResult AddSet(AddSetViewModel viewModel)
         {
-            if (ModelState.IsValid)
+            //Double check to see if a user is logged in
+            if (!User.Identity.IsAuthenticated)
             {
-                var set = new Set();
-                set = viewModel.Set;
-                _setRepository.Add(set);
-                return RedirectToAction("Index");
+               return RedirectToAction("SignIn", "User");
             }
-            return View(viewModel);
-        }
-        //To do: Only logged in people can add
+            
+            //Form validation
+            if (!ModelState.IsValid)
+            {
+                return View(viewModel);
+            }
 
+            var set = new Set();
+            set = viewModel.Set;
+            set.UserId = User.Identity.GetUserId();
+            _setRepository.Add(set);
+            return RedirectToAction("Index");
+        }
 
         /// <summary>
         /// Gets a set ~/sets/showset/1 
         /// </summary>
         public ActionResult ShowSet(int? setId)
         {
+            if (setId == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
             var set = _setRepository.Get(setId);
             var viewModel = new ShowSetViewModel
             {
@@ -85,21 +105,53 @@ namespace Cards.Controllers
         /// </summary> 
         public ActionResult DeleteSet(int? setId)
         {
+            if (setId == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            //Check to see if user is logged in
+            if (!User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("SignIn", "User");               
+            }
+
+            //Check to see if user is the owner
             var set = _setRepository.Get(setId);
+            var userId = User.Identity.GetUserId();
+            if (set.UserId != userId)
+            {
+                return HttpNotFound();
+            }
+
             return View(set);
         }
-        //To do: Only user can delete set
 
         [HttpPost]
         [ActionName("DeleteSet")]
         public ActionResult DeleteSetPost(int setId)
         {
-            if (ModelState.IsValid)
+            //Double check to see if user is logged in
+            if (!User.Identity.IsAuthenticated)
             {
-               _setRepository.Delete(setId);
-               return RedirectToAction("Index");
+                return RedirectToAction("SignIn", "User");
             }
-            return View("Error");
+
+            //Double check to see if user is the owner
+            var userId = User.Identity.GetUserId();
+            if (!_setRepository.EntryOwnedByUser(setId, userId))
+            {
+                return HttpNotFound();
+            }
+
+            if (!ModelState.IsValid)
+            {
+                return View("Error");
+            }
+            
+            _setRepository.Delete(setId);
+            return RedirectToAction("Index");
+            
         }
         //To do: Only owner can delete set
 
@@ -108,14 +160,31 @@ namespace Cards.Controllers
         /// </summary>
         public ActionResult EditSet(int? setId)
         {
+            if (setId == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            //Check if user is signed in before editing
+            if (!User.Identity.IsAuthenticated) 
+            {
+                return RedirectToAction("SignIn", "User");
+            }
+
+            //Check if user is the owner before editing
+            var userId = User.Identity.GetUserId();           
             var set = _setRepository.Get(setId);
+            if(!_setRepository.EntryOwnedByUser(set.SetId, set.UserId)) //Check if user is owner of set
+            {
+                return HttpNotFound();
+            }
+
             var viewModel = new EditSetViewModel
             {
                 Set = set
             };
             return View(viewModel);
         }
-        //To do: Only owner can edit set
 
         /// <summary>
         /// Edit a set (post)
@@ -123,21 +192,45 @@ namespace Cards.Controllers
         [HttpPost]                          
         public ActionResult EditSet(EditSetViewModel viewModel)
         {
+            var set = viewModel.Set;
+
+            if (!User.Identity.IsAuthenticated) //Double check to see if user is authenticated
+            {
+                return RedirectToAction("SignIn", "User");
+            }
+
+            if (!_setRepository.EntryOwnedByUser(set.SetId, set.UserId)) //Double check to see user is the owner before posting
+            {
+                return HttpNotFound();
+            }
+
             if (ModelState.IsValid)
             {
-                var set = viewModel.Set;
+                
                 _setRepository.Edit(set);
                 return RedirectToAction("Index");
             }
             return View(viewModel);
         } 
-        //To do: Only owner can edit set
 
         /// <summary>
         /// Add card to set (get) ~/sets/addcard/{setId}
         /// </summary>
         public ActionResult AddCard(int setId)
         {
+            //Check to see if user is authenticated
+            if (!User.Identity.IsAuthenticated) 
+            {
+                return RedirectToAction("SignIn", "User");
+            }
+
+            //Check to see if user is set owner
+            var userId = User.Identity.GetUserId();
+            if(!_setRepository.EntryOwnedByUser(setId, userId))
+            {
+                return HttpNotFound();
+            }
+
             var viewModel = new AddCardViewModel();
             viewModel.Card.SetId = setId;
             return View(viewModel);
@@ -150,6 +243,20 @@ namespace Cards.Controllers
         [HttpPost]
         public ActionResult AddCard(AddCardViewModel viewModel)
         {
+            //Double check to see if user is logged in
+            if (!User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("SignIn", "User");
+            }
+
+            //Double check to see if user is set owner
+            var userId = User.Identity.GetUserId();
+            if (!_setRepository.EntryOwnedByUser(viewModel.Card.SetId, userId))
+            {
+                return HttpNotFound();
+            }
+
+            //Form validation
             if (ModelState.IsValid)
             {
                 var card = new Card();
@@ -160,13 +267,25 @@ namespace Cards.Controllers
             }
             return View(viewModel);
         }
-        //To do: Only owner can add card to set
 
         /// <summary>
         /// Edit card in set ~/sets/{setid}/{cardid}/edit
         /// </summary>
         public ActionResult EditCard(int setId, int cardId)
         {
+            //Check to see if user logged in
+            if (!User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("SignIn", "User");
+            }
+
+            //Check to see if user is set owner
+            var userId = User.Identity.GetUserId();
+            if (!_setRepository.EntryOwnedByUser(setId, userId))
+            {
+                return HttpNotFound();
+            }
+
             var viewModel = new EditCardViewModel()
             {
                 Card = _cardRepository.Get(setId, cardId)
@@ -181,6 +300,19 @@ namespace Cards.Controllers
         [HttpPost]
         public ActionResult EditCard(EditCardViewModel viewModel)
         {
+            //Double Check to see if user logged in
+            if (!User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("SignIn", "User");
+            }
+
+            //Double Check to see if user is set owner
+            var userId = User.Identity.GetUserId();
+            if (!_setRepository.EntryOwnedByUser(viewModel.Card.SetId, userId))
+            {
+                return HttpNotFound();
+            }
+           
             if (ModelState.IsValid)
             {
                 var card = new Card();
@@ -190,21 +322,46 @@ namespace Cards.Controllers
             }
             return View(viewModel);
         }
-        //To do: Only owner of set can edit card
 
         /// <summary>
         /// Delete card in set ~/sets/{setid}/{cardid}/delete
         /// </summary>
         public ActionResult DeleteCard(int setId, int cardId)
         {
+            //Check to see if user logged in
+            if (!User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("SignIn", "User");
+            }
+
+            //Check to see if user is set owner
+            var userId = User.Identity.GetUserId();
+            if (!_setRepository.EntryOwnedByUser(setId, userId))
+            {
+                return HttpNotFound();
+            }
+
             var card = _cardRepository.Get(setId, cardId);
             return View(card);
         }
-        //To do: Only owner of set can delete card
+
 
         [HttpPost, ActionName("DeleteCard")]
         public ActionResult DeleteCardPost(int setId, int cardId)
         {
+            //Double check to see if user logged in
+            if (!User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("SignIn", "User");
+            }
+
+            //Double check to see if user is set owner
+            var userId = User.Identity.GetUserId();
+            if (!_setRepository.EntryOwnedByUser(setId, userId))
+            {
+                return HttpNotFound();
+            }
+
             if (ModelState.IsValid)
             {
                 _cardRepository.Delete(setId, cardId);
@@ -212,6 +369,6 @@ namespace Cards.Controllers
             }
             return View("Error");
         }
-        //To do: Only owner of set can delete card
+
     }
 }

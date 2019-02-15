@@ -1,8 +1,20 @@
 ﻿@model Cards.ViewModels.IndexSetViewModel
+@using Microsoft.AspNet.Identity
+@using Cards.Models
 
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
+@{
+    string UserVisibility(Set set)
+    {
+        var userId = User.Identity.GetUserId();
+        return (userId == set.UserId) ? "visible" : "hidden";
+    }
+    
+}
+
 
 <div>
     <h5>@Model.SetCount Available!</h5>
@@ -11,10 +23,20 @@
         @foreach (var set in Model.Sets)
         {
             <li>
-                <a href="@Url.Action("ShowSet", "Sets", new {SetId = set.SetId})">@set.Name</a>
+                <a href="@Url.Action("ShowSet", "Sets", new {SetId = set.SetId})">
+                    @set.Name
+                </a>
                 (@set.CardCount Cards)
-                <a href="@Url.Action("EditSet", "Sets", new {SetId = set.SetId})">Edit</a>
-                <a href="@Url.Action("DeleteSet", "Sets", new {SetId = set.SetId})">Delete</a>
+
+                <a href="@Url.Action("EditSet", "Sets", new {SetId = set.SetId})"
+                   style="visibility: @UserVisibility(set)">
+                    Edit
+                </a>
+
+                <a href="@Url.Action("DeleteSet", "Sets", new {SetId = set.SetId})"
+                   style="visibility: @UserVisibility(set)">
+                    Delete
+                </a>
             </li>
         }
     </ul>

@@ -12,7 +12,14 @@ namespace Cards.ViewModels
         [Display(Name = "Email address")]
         [Required(ErrorMessage = "Email address is required")]
         [EmailAddress(ErrorMessage = "Invalid Email Address")]
+        [System.Web.Mvc.Remote("IsAlreadySigned", "User", HttpMethod = "POST", ErrorMessage = "EmailAddress already exists in database.")]
         public string Email { get; set; }
+
+        [Display(Name = "Username")]
+        [Required(ErrorMessage = "Username is required")]
+        [RegularExpression(@"^[a-zA-Z0-9\-\_]+$", ErrorMessage = "No spaces or special character (apart from - and _) allowed")]
+        [System.Web.Mvc.Remote("IsAlreadySigned", "User", HttpMethod = "POST", ErrorMessage = "Username already exists in database.")]
+        public string UserName { get; set; }
 
         [Required(ErrorMessage = "Password is required")]
         [StringLength(255, ErrorMessage = "Must be between 5 and 255 characters", MinimumLength = 5)]
@@ -22,7 +29,7 @@ namespace Cards.ViewModels
         [Required(ErrorMessage = "Confirm Password is required")]
         [StringLength(255, ErrorMessage = "Must be between 5 and 255 characters", MinimumLength = 5)]
         [DataType(DataType.Password)]
-        [Compare("Password")]
+        [Compare("Password", ErrorMessage = "Passwords must match")]
         public string ConfirmPassword { get; set; }
     }
 }

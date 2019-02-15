@@ -57,7 +57,7 @@ namespace Cards.Controllers
             {
                 var user = new User
                 {
-                    UserName = viewModel.Email,
+                    UserName = viewModel.UserName,
                     Email = viewModel.Email
                 };
 
@@ -91,7 +91,7 @@ namespace Cards.Controllers
                 return View(viewModel);
             }
             var result = await _signInManager.PasswordSignInAsync(
-                viewModel.Email, viewModel.Password, viewModel.RememberMe, shouldLockout: false);
+                viewModel.Username, viewModel.Password, viewModel.RememberMe, shouldLockout: false);
 
             switch (result)
             {
@@ -118,7 +118,7 @@ namespace Cards.Controllers
         //Your profile
         public ActionResult ViewProfile(int id)
         {
-            //List 
+            //Username, sets, favourite sets
             return View();
         }
     }

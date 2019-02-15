@@ -7,6 +7,7 @@
 <div>
     @using (Html.BeginForm())
     {
+        @Html.HiddenFor(m => m.Set.UserId)
         <div>
             @Html.LabelFor(m => m.Set.Name)
             @Html.TextBoxFor(m => m.Set.Name)
