@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -10,8 +11,7 @@ namespace Cards.Models
     {
         public Set()
         {
-            Date = DateTime.Now;
-            
+            Date = DateTime.Now;           
         }
 
         [Key]
@@ -36,7 +36,6 @@ namespace Cards.Models
         }
 
         public User User { get; set; }
-        
         public string UserId { get; set; }
         //UsersFavourite
     }

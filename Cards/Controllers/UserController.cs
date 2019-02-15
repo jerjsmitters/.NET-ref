@@ -91,7 +91,7 @@ namespace Cards.Controllers
                 return View(viewModel);
             }
             var result = await _signInManager.PasswordSignInAsync(
-                viewModel.Username, viewModel.Password, viewModel.RememberMe, shouldLockout: false);
+                viewModel.UserName, viewModel.Password, viewModel.RememberMe, shouldLockout: false);
 
             switch (result)
             {

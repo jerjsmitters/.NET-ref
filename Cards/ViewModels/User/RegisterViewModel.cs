@@ -17,7 +17,6 @@ namespace Cards.ViewModels
 
         [Display(Name = "Username")]
         [Required(ErrorMessage = "Username is required")]
-        [RegularExpression(@"^[a-zA-Z0-9\-\_]+$", ErrorMessage = "No spaces or special character (apart from - and _) allowed")]
         [System.Web.Mvc.Remote("IsAlreadySigned", "User", HttpMethod = "POST", ErrorMessage = "Username already exists in database.")]
         public string UserName { get; set; }
 

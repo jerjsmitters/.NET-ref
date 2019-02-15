@@ -22,6 +22,7 @@ namespace Cards.Data
             return _context.Sets
                 .OrderBy(s => s.Date)
                 .Include(s => s.Cards)
+                .Include(s => s.User)
                 .ToList();
         }
 
@@ -29,6 +30,7 @@ namespace Cards.Data
         {
             return _context.Sets
                 .Include(s => s.Cards)
+                .Include(s => s.User)
                 .SingleOrDefault(s => s.SetId == setId);
         }
 
@@ -38,7 +40,7 @@ namespace Cards.Data
             _context.SaveChanges();
         }
 
-        public void Edit(Set set) //from vm
+        public void Edit(Set set) 
         {
             var setEntry = _context.Entry(set);
             setEntry.State = EntityState.Modified;
