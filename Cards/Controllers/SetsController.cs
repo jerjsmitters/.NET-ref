@@ -1,5 +1,6 @@
 ﻿using Cards.Data;
 using Cards.Models;
+using Cards.Security;
 using Cards.ViewModels;
 using Microsoft.AspNet.Identity;
 using System;
@@ -16,14 +17,17 @@ namespace Cards.Controllers
     {
         private SetRepository _setRepository;
         private CardRepository _cardRepository;
+        private readonly ApplicationUserManager _userManager = null;
 
-        public SetsController(SetRepository setRepository, 
+        public SetsController(ApplicationUserManager userManager,
+                            SetRepository setRepository, 
                             CardRepository cardRepository,
                             Context context)
             :base(context)
         {
             _setRepository = setRepository;
             _cardRepository = cardRepository;
+            _userManager = userManager;
         }
 
         /// <summary>
@@ -76,7 +80,9 @@ namespace Cards.Controllers
 
             var set = new Set();
             set = viewModel.Set;
-            set.UserId = User.Identity.GetUserId();
+            var userId = User.Identity.GetUserId();
+            set.UserId = userId;
+            set.User = _userManager.FindById(userId);
             _setRepository.Add(set);
             return RedirectToAction("Index");
         }
@@ -195,6 +201,7 @@ namespace Cards.Controllers
         public ActionResult EditSet(EditSetViewModel viewModel)
         {
             var set = viewModel.Set;
+            viewModel.Set.User = _userManager.FindById(set.UserId);
 
             if (!User.Identity.IsAuthenticated) //Double check to see if user is authenticated
             {
@@ -208,8 +215,7 @@ namespace Cards.Controllers
             }
 
             if (ModelState.IsValid)
-            {
-                
+            {             
                 _setRepository.Edit(set);
                 return RedirectToAction("Index");
             }

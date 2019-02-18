@@ -239,7 +239,7 @@ namespace Cards.Data
 
             var set1 = new Set()
             {
-                Name = "How does to tie my shoelaces",
+                Name = "How to tie my shoelaces",
                 Description = "It a set",
                 Cards = cardList1,
                 Subject = subject1,

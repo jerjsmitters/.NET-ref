@@ -36,6 +36,7 @@ namespace Cards.Models
         }
 
         public User User { get; set; }
+
         public string UserId { get; set; }
         //UsersFavourite
     }
