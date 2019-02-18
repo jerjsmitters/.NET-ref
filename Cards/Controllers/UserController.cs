@@ -57,7 +57,7 @@ namespace Cards.Controllers
             {
                 var user = new User
                 {
-                    UserName = viewModel.UserName,
+                    UserName = viewModel.Email,
                     Email = viewModel.Email
                 };
 
@@ -91,7 +91,7 @@ namespace Cards.Controllers
                 return View(viewModel);
             }
             var result = await _signInManager.PasswordSignInAsync(
-                viewModel.UserName, viewModel.Password, viewModel.RememberMe, shouldLockout: false);
+                viewModel.Email, viewModel.Password, viewModel.RememberMe, shouldLockout: false);
 
             switch (result)
             {
