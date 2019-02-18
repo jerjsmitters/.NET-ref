@@ -15,10 +15,10 @@ namespace Cards.ViewModels
         [System.Web.Mvc.Remote("IsAlreadySigned", "User", HttpMethod = "POST", ErrorMessage = "EmailAddress already exists in database.")]
         public string Email { get; set; }
 
-        //[Display(Name = "Username")]
-        //[Required(ErrorMessage = "Username is required")]
-        //[System.Web.Mvc.Remote("IsAlreadySigned", "User", HttpMethod = "POST", ErrorMessage = "Username already exists in database.")]
-        //public string UserName { get; set; }
+        [Display(Name = "Username")]
+        [Required(ErrorMessage = "Username is required")]
+        [System.Web.Mvc.Remote("IsAlreadySigned", "User", HttpMethod = "POST", ErrorMessage = "Username already exists in database.")]
+        public string UserName { get; set; }
 
         [Required(ErrorMessage = "Password is required")]
         [StringLength(255, ErrorMessage = "Must be between 5 and 255 characters", MinimumLength = 5)]

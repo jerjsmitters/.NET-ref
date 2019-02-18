@@ -229,6 +229,14 @@ namespace Cards.Data
 
             userManager.Create(user4, user4.UserName);
 
+            var george = new User()
+            {
+                UserName = "gs274",
+                Email = "gs274@outlook.com"
+            };
+
+            userManager.Create(george, "wasdwasd");
+
             var set1 = new Set()
             {
                 Name = "How does to tie my shoelaces",

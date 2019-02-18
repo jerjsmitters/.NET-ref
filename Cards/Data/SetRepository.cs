@@ -23,6 +23,7 @@ namespace Cards.Data
                 .OrderBy(s => s.Date)
                 .Include(s => s.Cards)
                 .Include(s => s.User)
+                .Include(s => s.Subject)
                 .ToList();
         }
 
@@ -31,6 +32,7 @@ namespace Cards.Data
             return _context.Sets
                 .Include(s => s.Cards)
                 .Include(s => s.User)
+                .Include(s => s.Subject)
                 .SingleOrDefault(s => s.SetId == setId);
         }
 
@@ -49,7 +51,7 @@ namespace Cards.Data
 
         public void Delete(int setId)
         {
-            Set set = _context.Sets.Find(setId);
+            Set set = _context.Sets.Include(s => s.Subject).SingleOrDefault(s => s.SetId == setId);
             _context.Sets.Remove(set);
             _context.SaveChanges();
         }

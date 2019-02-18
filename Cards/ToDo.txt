@@ -8,4 +8,5 @@
 -Change labels on some of the viewmodels
 -Add indicators for allows character length and type
 -Temp data
--Remove buttons for certain 
+-Make it so there are only unique entries of Subject.
+-Handle if SingleOrDefault returns default

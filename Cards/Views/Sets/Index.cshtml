@@ -27,6 +27,7 @@
                     @set.Name
                 </a>
                 (@set.CardCount Cards)
+                <span>Creator: @set.User.UserName</span>
 
                 <a href="@Url.Action("EditSet", "Sets", new {SetId = set.SetId})"
                    style="visibility: @UserVisibility(set)">

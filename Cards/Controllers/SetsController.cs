@@ -124,7 +124,9 @@ namespace Cards.Controllers
                 return HttpNotFound();
             }
 
-            return View(set);
+            ViewBag.Set = set;
+
+            return View();
         }
 
         [HttpPost]
@@ -198,9 +200,10 @@ namespace Cards.Controllers
             {
                 return RedirectToAction("SignIn", "User");
             }
-
-            if (!_setRepository.EntryOwnedByUser(set.SetId, set.UserId)) //Double check to see user is the owner before posting
+            var userId = User.Identity.GetUserId();
+            if (!_setRepository.EntryOwnedByUser(set.SetId, userId)) //Double check to see user is the owner before posting
             {
+
                 return HttpNotFound();
             }
 
