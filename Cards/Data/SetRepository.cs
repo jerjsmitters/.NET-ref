@@ -15,8 +15,7 @@ namespace Cards.Data
         {
             _context = context;
         }
-
-   
+           
         public IList<Set> GetAll()
         {
             return _context.Sets

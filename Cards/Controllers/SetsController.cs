@@ -17,17 +17,20 @@ namespace Cards.Controllers
     {
         private SetRepository _setRepository;
         private CardRepository _cardRepository;
+        private SubjectRepository _subjectRepository;
         private readonly ApplicationUserManager _userManager = null;
 
         public SetsController(ApplicationUserManager userManager,
                             SetRepository setRepository, 
                             CardRepository cardRepository,
+                            SubjectRepository subjectRepository,
                             Context context)
             :base(context)
         {
             _setRepository = setRepository;
             _cardRepository = cardRepository;
             _userManager = userManager;
+            _subjectRepository = subjectRepository;
         }
 
         /// <summary>
@@ -78,11 +81,19 @@ namespace Cards.Controllers
                 return View(viewModel);
             }
 
+            //Create set to upload to db
             var set = new Set();
             set = viewModel.Set;
+
+            //Check to see if subject already exists
+            var subject = (_subjectRepository.DoesSubjectExist(set.Subject.Name)) ? _subjectRepository.GetByName(set.Subject.Name) : set.Subject;
+            set.Subject = subject;
+
+            //Attach user to set
             var userId = User.Identity.GetUserId();
             set.UserId = userId;
             set.User = _userManager.FindById(userId);
+
             _setRepository.Add(set);
             return RedirectToAction("Index");
         }
@@ -182,7 +193,7 @@ namespace Cards.Controllers
             //Check if user is the owner before editing
             var userId = User.Identity.GetUserId();           
             var set = _setRepository.Get(setId);
-            if(!_setRepository.EntryOwnedByUser(set.SetId, set.UserId)) //Check if user is owner of set
+            if(!_setRepository.EntryOwnedByUser(set.SetId, set.UserId)) 
             {
                 return HttpNotFound();
             }
@@ -200,26 +211,36 @@ namespace Cards.Controllers
         [HttpPost]                          
         public ActionResult EditSet(EditSetViewModel viewModel)
         {
-            var set = viewModel.Set;
-            viewModel.Set.User = _userManager.FindById(set.UserId);
-
-            if (!User.Identity.IsAuthenticated) //Double check to see if user is authenticated
+            //Double check to see if user is authenticated
+            if (!User.Identity.IsAuthenticated) 
             {
                 return RedirectToAction("SignIn", "User");
             }
-            var userId = User.Identity.GetUserId();
-            if (!_setRepository.EntryOwnedByUser(set.SetId, userId)) //Double check to see user is the owner before posting
-            {
 
+            //Create set to upload to db            
+            var set = viewModel.Set;
+            viewModel.Set.User = _userManager.FindById(set.UserId); 
+
+            var userId = User.Identity.GetUserId();
+
+            //Double check to see user is the owner before posting
+            if (!_setRepository.EntryOwnedByUser(set.SetId, userId)) 
+            {
                 return HttpNotFound();
             }
 
-            if (ModelState.IsValid)
+            //Validate set
+            if (!ModelState.IsValid)
             {             
-                _setRepository.Edit(set);
-                return RedirectToAction("Index");
+                 return View(viewModel);
             }
-            return View(viewModel);
+
+            //Check to see if subject already exists
+            var subject = (_subjectRepository.DoesSubjectExist(set.Subject.Name)) ? _subjectRepository.GetByName(set.Subject.Name) : set.Subject;
+            set.Subject = subject;
+
+            _setRepository.Edit(set);
+            return RedirectToAction("Index");
         } 
 
         /// <summary>

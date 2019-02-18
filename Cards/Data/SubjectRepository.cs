@@ -16,10 +16,6 @@ namespace Cards.Data
             _context = context;
         }
 
-        //Add - when first set with subject is added
-        //Remove - when no sets remain
-        //No edit
-
         //Get all
         public IList<Subject> GetAll()
         {
@@ -29,7 +25,6 @@ namespace Cards.Data
                 .ToList();
         }
         //Get 
-
         public Subject Get(int? subjectId)
         {
             return _context.Subjects
@@ -37,6 +32,28 @@ namespace Cards.Data
                 .SingleOrDefault(s => s.SubjectId == subjectId);
         }
 
+        public void Add(Subject subject)
+        {
+             _context.Subjects.Add(subject);
+        }
+
+        public bool HasSubjChanged(Set set1, Set set2)
+        {
+            return set1.Subject.Name != set2.Subject.Name;
+        }
+
+        public bool DoesSubjectExist(string name)
+        {
+            var result = _context.Subjects
+                .SingleOrDefault(s => s.Name == name);
+            return result != null;
+        }
+
+        public Subject GetByName(string name)
+        {
+            return _context.Subjects
+                .SingleOrDefault(s => s.Name == name);
+        }
     }
 
 }

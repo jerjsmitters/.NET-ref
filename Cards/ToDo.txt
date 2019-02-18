@@ -1,12 +1,7 @@
-﻿User check for Edit Set, Edit card, Delete Card, Add Card
+﻿
 
 
 -Test changing subject functionality
--Add username functionality. Allow only unique emails and usernames. 
--User related errors + privacy
--Favourite functionality
--Change labels on some of the viewmodels
 -Add indicators for allows character length and type
 -Temp data
--Make it so there are only unique entries of Subject.
 -Handle if SingleOrDefault returns default
