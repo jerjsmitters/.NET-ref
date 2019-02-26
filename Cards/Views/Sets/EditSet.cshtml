@@ -2,26 +2,24 @@
 
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
-
 }
-
-<div>
-    @using (Html.BeginForm())
-    {
-        <div>
-            @Html.LabelFor(m => m.Set.Name)
-            @Html.TextBoxFor(m => m.Set.Name)
-            @Html.ValidationMessageFor(m => m.Set.Name)
-        </div>
-        <div>
-            @Html.LabelFor(m => m.Set.Description)
-            @Html.TextBoxFor(m => m.Set.Description)
-            @Html.ValidationMessageFor(m => m.Set.Description)
-        </div>
-
-        @Html.HiddenFor(m => m.Set.SetId)
-        @Html.HiddenFor(m => m.Set.UserId)
-        @Html.HiddenFor(m => m.Set.Subject)
-        <input type="submit" />
-    }
+<div id="set-form-section">
+    <h2>Edit Set</h2>
+    <div id="set-form">
+        @using (Html.BeginForm())
+        {
+            @Html.HiddenFor(m => m.Set.UserId)
+            <div class="set-input-cont">
+                @Html.LabelFor(m => m.Set.Name)<br />
+                @Html.TextBoxFor(m => m.Set.Name)
+                @Html.ValidationMessageFor(m => m.Set.Name)
+            </div>
+            <div class="set-input-cont">
+                @Html.LabelFor(m => m.Set.Description)<br />
+                @Html.TextAreaFor(m => m.Set.Description)
+                @Html.ValidationMessageFor(m => m.Set.Description)
+            </div>
+            <input type="submit" value="Save Set" />
+        }
+    </div>
 </div>

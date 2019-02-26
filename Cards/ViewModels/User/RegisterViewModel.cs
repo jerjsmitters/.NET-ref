@@ -16,6 +16,7 @@ namespace Cards.ViewModels
         public string Email { get; set; }
 
         [Display(Name = "Username")]
+        [StringLength(20, ErrorMessage = "Must be between 1 and 20 characters", MinimumLength = 1)]
         [Required(ErrorMessage = "Username is required")]
         [System.Web.Mvc.Remote("IsAlreadySigned", "User", HttpMethod = "POST", ErrorMessage = "Username already exists in database.")]
         public string UserName { get; set; }

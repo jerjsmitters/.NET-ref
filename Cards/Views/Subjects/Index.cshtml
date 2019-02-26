@@ -3,12 +3,14 @@
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-<div> 
-    <ul>
-        @foreach (var subj in Model.Subjects)
-        {
-            <li><a href="@Url.Action("ShowSubject", "Subjects", new {SubjectId = subj.SubjectId})">@subj.Name</a> (@subj.SetCount Available)</li>
-        }
-    </ul>
+<div id="subject-section">
+    <h2>Subjects</h2>
+    <div id="subject-container"> 
+        <ul id="subject-list">
+            @foreach (var subj in Model.Subjects)
+            {
+                <li class="subject"><a href="@Url.Action("ShowSubject", "Subjects", new {SubjectId = subj.SubjectId})">@subj.Name (@subj.SetCount Available)</a></li>
+            }
+        </ul>
+    </div>
 </div>

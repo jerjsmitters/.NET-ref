@@ -3,27 +3,29 @@
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-<div>
-    @using (Html.BeginForm())
-    {
-        @Html.HiddenFor(m => m.Set.UserId)
-        <div>
-            @Html.LabelFor(m => m.Set.Name)
-            @Html.TextBoxFor(m => m.Set.Name)
-            @Html.ValidationMessageFor(m => m.Set.Name)
-        </div>
-        <div>
-            @Html.LabelFor(m => m.Set.Description)
-            @Html.TextBoxFor(m => m.Set.Description)
-            @Html.ValidationMessageFor(m => m.Set.Description)
-        </div>
-        <div>
-            @Html.LabelFor(m => m.Set.Subject.Name)
-            @Html.TextBoxFor(m => m.Set.Subject.Name)
-            @Html.ValidationMessageFor(m => m.Set.Subject.Name)
-        </div>
-        <input type="submit" />
-    }
+<div id="set-form-section">
+    <h2>Add Set</h2>
+    <div id="set-form">
+        @using (Html.BeginForm())
+        {
+            @Html.HiddenFor(m => m.Set.UserId)
+            <div class="set-input-cont">
+                @Html.LabelFor(m => m.Set.Name)<br />
+                @Html.TextBoxFor(m => m.Set.Name)
+                @Html.ValidationMessageFor(m => m.Set.Name)
+            </div>
+            <div class="set-input-cont">
+                @Html.LabelFor(m => m.Set.Subject.Name)<br />
+                @Html.TextBoxFor(m => m.Set.Subject.Name)
+                @Html.ValidationMessageFor(m => m.Set.Subject.Name)
+            </div>
+            <div class="set-input-cont">
+                @Html.LabelFor(m => m.Set.Description)<br />
+                @Html.TextAreaFor(m => m.Set.Description)
+                @Html.ValidationMessageFor(m => m.Set.Description)
+            </div>          
+            <input type="submit" value="Save Set" />
+        }
+    </div>
 </div>
 

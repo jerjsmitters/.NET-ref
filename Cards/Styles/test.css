@@ -1,0 +1,63 @@
+﻿
+.test-card {
+    perspective: 800px;
+    height: 200px;
+}
+
+.test-card-inner{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center; 
+    transform-style: preserve-3d;
+}
+
+.test-card-front,
+.test-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    background-color: white;
+    border: 1px black solid;
+    transition: transform 0.8s;
+}
+
+.flip-front{
+    transform: rotateY(-180deg);
+}
+
+.unflip-front{
+    transform: rotateY(0deg);
+}
+
+.flip-back{
+    transform: rotateY(-360deg)
+}
+
+.unflip-back{
+    transform: rotateY(-180deg);
+}
+
+
+.test-btn-container{
+    position: relative;
+}
+.fwd-btn,
+.back-btn {
+    font-size: 32px;
+    position: absolute;
+    bottom: -56px;
+    z-index: 1000;
+    width: 200px;
+    border: solid black 1px;
+    background-color: white;
+}
+
+.fwd-btn{
+    right: 0;
+}
+
+.back-btn {
+    left: 0;
+}

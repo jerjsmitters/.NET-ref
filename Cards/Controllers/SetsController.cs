@@ -45,6 +45,22 @@ namespace Cards.Controllers
             return View(viewModel);
         }
         
+        public ActionResult UserSet()
+        {
+            if (!User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("SignIn", "User");
+            }
+
+            string userId = User.Identity.GetUserId();
+            var viewModel = new IndexSetViewModel
+            {
+                Sets = _setRepository.GetAllUser(userId)
+            };
+
+            ViewBag.Title = "Your Sets";
+            return View(viewModel);
+        }
 
         /// <summary>
         /// Add a set (get) ~/sets/add
@@ -60,9 +76,7 @@ namespace Cards.Controllers
             var viewModel = new AddSetViewModel();
             return View(viewModel);
         }
-        
-        
-
+              
         /// <summary>
         /// Add a set (post)
         /// </summary> //-- 
@@ -243,6 +257,22 @@ namespace Cards.Controllers
             return RedirectToAction("Index");
         } 
 
+        //Test mode
+        public ActionResult Test(int? setId)
+        {
+            if (setId == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            var set = _setRepository.Get(setId);
+            var viewModel = new TestViewModel
+            {
+                Set = set
+            };
+            return View(viewModel);
+        }
+
         /// <summary>
         /// Add card to set (get) ~/sets/addcard/{setId}
         /// </summary>
@@ -374,7 +404,6 @@ namespace Cards.Controllers
             var card = _cardRepository.Get(setId, cardId);
             return View(card);
         }
-
 
         [HttpPost, ActionName("DeleteCard")]
         public ActionResult DeleteCardPost(int setId, int cardId)

@@ -35,6 +35,17 @@ namespace Cards.Data
                 .SingleOrDefault(s => s.SetId == setId);
         }
 
+        public IList<Set> GetAllUser(string userId)
+        {
+            return _context.Sets
+                .OrderBy(s => s.Date)
+                .Include(s => s.Cards)
+                .Include(s => s.User)
+                .Include(s => s.Subject)
+                .Where(s => s.UserId == userId)
+                .ToList();
+        }
+
         public void Add(Set set)
         {
             _context.Sets.Add(set);

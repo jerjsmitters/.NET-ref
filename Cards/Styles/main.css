@@ -1,0 +1,161 @@
+﻿/***Global***/
+body {
+    margin: 0;
+    background-color: rgba(12, 61, 117, 0.85);
+    font-family: 'Catamaran', sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+a {
+    text-decoration: none;
+}
+.container{
+    padding: 0 10px;
+}
+
+/***Header***/
+#nav-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #234572;
+    height: 65px;
+    padding: 0 0 0 10px;
+    font-size: 16px;
+}
+
+#nav-bar a {
+    color: white;
+}
+
+#set-bar > ul,
+#user-bar > ul {
+    display: flex;
+    list-style:none;
+    padding:0;
+    align-items: center
+}
+
+#set-bar>ul>li:first-of-type,
+#user-bar>ul>li:nth-last-of-type(2){
+    margin-right: 10px
+}
+
+#set-bar>ul>li>a{
+    text-decoration: none;
+}
+
+#nav-bar-username{
+    display: none;
+}
+
+#sign-out-button {
+    background-color: #c64040;
+    border: none;
+    font-family: 'Catamaran', sans-serif;
+    color: white;
+    font-size: 16px;
+    height: 64px;
+}
+
+
+/***----Index ----***/
+/*-Header-*/
+#set-list-header{
+    display: flex;
+    flex-direction: row;
+    padding: 0 10px;
+    align-items:center;
+    justify-content: space-between;
+}
+
+#set-list-header>h2{
+    color:white;
+    font-size: 32px;
+    margin: 15px 0;
+}
+
+#set-list-header>a{
+    height: 40px;
+}
+
+#add-set-icon{
+    width: 40px;
+}
+
+/*-General list-*/
+#set-list {
+    padding: 0;
+    margin-top: 0;    
+}
+
+.set {
+    list-style: none;
+    height: 70px;
+    position: relative;
+    padding: 0 10px;
+}
+
+#set-list > .set:nth-of-type(2n+1) {
+    background-color: #467fdb;
+}
+
+#set-list > .set:nth-of-type(2n) {
+    background-color: #105395;
+}
+
+.set div{
+    text-decoration: none;
+    color: white;
+}
+
+/*-Individual Set Layout-*/
+.set-main{
+    height: 60%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.set-secondary{
+    height: 40%;
+}
+.set-name {
+    overflow-x: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 70%;
+    display: inline-block;
+    font-size:20px;
+    position:relative;
+    top: 2px;
+}
+
+.set-card-count {
+    width: 30%;
+    text-align: right;
+    display: inline-block;
+    font-size: 13px;
+    position:relative;
+    top: 3px;
+}
+
+.set-username{
+    position: relative;
+    left: 24px;
+    bottom: 4px;
+    font-size: 13px;
+}
+.set-username::before {
+    content: '';
+    width: 20px;
+    height: 20px;
+    background-image: url("../img/user.svg");
+    position: absolute;
+    left: -24px;
+    bottom: 3px;
+}

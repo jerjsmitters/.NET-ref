@@ -4,26 +4,28 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-
-<div>
-    @using (Html.BeginForm())
-    {
-    <div>
-        @Html.LabelFor(m => m.Card.Front)
-        @Html.TextBoxFor(m => m.Card.Front)
-        @Html.ValidationMessageFor(m => m.Card.Front)
+<div id="card-form-section">
+    <h2>Add Card</h2>
+    <div id="card-form">
+        @using (Html.BeginForm())
+        {
+        <div class="card-input-cont">
+            @Html.LabelFor(m => m.Card.Front)
+            @Html.TextBoxFor(m => m.Card.Front)
+            @Html.ValidationMessageFor(m => m.Card.Front)
+        </div>
+        <div class="card-input-cont"> 
+            @Html.LabelFor(m => m.Card.Back)
+            @Html.TextBoxFor(m => m.Card.Back)
+            @Html.ValidationMessageFor(m=>m.Card.Back)
+        </div>
+        <div class="card-input-cont">
+            @Html.LabelFor(m => m.Card.Hint)
+            @Html.TextBoxFor(m => m.Card.Hint)
+            @Html.ValidationMessageFor(m => m.Card.Hint)
+        </div>
+            @Html.HiddenFor(m => m.Card.SetId)
+            <input type="submit" value="Save Card" />
+        }
     </div>
-    <div>
-        @Html.LabelFor(m => m.Card.Back)
-        @Html.TextBoxFor(m => m.Card.Back)
-        @Html.ValidationMessageFor(m=>m.Card.Back)
-    </div>
-    <div>
-        @Html.LabelFor(m => m.Card.Hint)
-        @Html.TextBoxFor(m => m.Card.Hint)
-        @Html.ValidationMessageFor(m => m.Card.Hint)
-    </div>
-        @Html.HiddenFor(m => m.Card.SetId)
-        <input type="submit" />
-    }
 </div>

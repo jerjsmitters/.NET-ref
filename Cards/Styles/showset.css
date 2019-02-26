@@ -1,0 +1,125 @@
+﻿#showset-container{
+    padding: 0 10px;
+    color:white;
+}
+
+#showset-title{
+    margin: 30px 0 25px;
+}
+
+#showset-description {
+    display: none;
+    background-color: rgb(31, 72, 120);
+    padding: 10px;
+    border-radius: 6px;
+    position:relative;
+}
+
+#showset-description>h4{
+    margin: 0 0 10px;
+    font-size:18px;
+    position:relative;
+}
+
+#close-description-button {
+    position: absolute;
+    top: 0px;
+    right: 10px;
+    cursor: pointer;
+    width: 18px;
+    text-align: center;
+    z-index: 100;
+    font-size: 18px;
+}
+
+#showset-description-show {
+    text-align: center;
+    border: 1px solid rgba(198,196,196,0.301);
+    background-color: #2861a5;
+    height: 32px;
+    line-height: 34px;
+    border-radius: 2px;
+    margin-bottom: 40px;
+    cursor: pointer;
+}
+
+#card-container {
+    list-style: none;
+    padding: 0;
+    color: #231c1c;
+}
+
+.card-unit{
+    background-color: white;
+    margin-bottom: 10px;
+    position: relative;
+}
+
+.card-back,
+.card-front {
+    height: 80px;
+    text-align: center;
+    line-height: 80px;
+}
+
+.card-front {
+    border-bottom: 1px solid rgba(132, 111, 111, 0.56);
+}
+
+#set-operations {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
+
+#set-operations a{
+    display: inline-block;
+    color:white;
+    height: 35px;
+    line-height: 35px;
+    text-align:center;
+    border-radius: 2px;
+}
+
+#add-card-button { /*Add card*/
+    border: 1px solid green;
+    background-color: rgb(101, 200, 109);
+    color: white;
+    width: 110px;
+}
+#edit-set-button {
+    color: white;
+    background-color: dimgray;
+    width: 80px;
+    border: 1px solid rgb(50, 57, 50);
+}
+
+#delete-set-button {
+    background-color: rgb(198, 64, 64);
+    border: 1px solid crimson;
+    font-family: 'Catamaran', sans-serif;
+    color: rgb(255, 255, 255);
+    font-size: 16px;
+    width: 95px;
+}
+
+.card-operations {
+    position: absolute;
+    bottom: -27px;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    background: lightblue;
+}
+
+.edit-card-button {
+    margin-right: 30px;
+    color: rgb(44, 35, 35);
+}
+
+.delete-card-button{
+    color:red;
+}
+
+

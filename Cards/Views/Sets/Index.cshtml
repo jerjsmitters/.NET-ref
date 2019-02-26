@@ -4,39 +4,42 @@
 
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "All Sets";
 }
 
 @{
-    string UserVisibility(Set set)
+    string GetTitle()
     {
-        var userId = User.Identity.GetUserId();
-        return (userId == set.UserId) ? "visible" : "hidden";
+        var action = ViewContext.RouteData.Values["action"].ToString();
+        return (action == "Index") ? "All Sets" : "Your Sets";
     }
-    
+
+    string Visibility()
+    {
+        var action = ViewContext.RouteData.Values["action"].ToString();
+        return (action == "Index") ? "Visible" : "Hidden";
+    }
 }
 
-
 <div>
-    <h5>@Model.SetCount Available!</h5>
-    <a href="@Url.Action("AddSet", "Sets")">Add set</a>
-    <ul>
+    <div id="set-list-header">
+        <h2>@GetTitle()</h2>
+        <a href="@Url.Action("AddSet", "Sets")"><img src="~/img/plus.svg" id="add-set-icon" /></a>
+    </div>
+
+    <ul id="set-list">
         @foreach (var set in Model.Sets)
         {
-            <li>
+            <li class="set">
                 <a href="@Url.Action("ShowSet", "Sets", new {SetId = set.SetId})">
-                    @set.Name
-                </a>
-                (@set.CardCount Cards)
-                <span>Creator: @set.User.UserName</span>
-
-                <a href="@Url.Action("EditSet", "Sets", new {SetId = set.SetId})"
-                   style="visibility: @UserVisibility(set)">
-                    Edit
-                </a>
-
-                <a href="@Url.Action("DeleteSet", "Sets", new {SetId = set.SetId})"
-                   style="visibility: @UserVisibility(set)">
-                    Delete
+                    <div class="set-main">
+                        <span class="set-name">@set.Name</span> <span class="set-card-count">@set.CardCount Cards</span>
+                    </div>
+                    <div class="set-secondary">
+                        <span class="set-username"
+                              style="visibility:@Visibility()">@set.User.UserName
+                        </span>
+                    </div>
                 </a>
             </li>
         }

@@ -5,10 +5,10 @@
 }
 
 <div> 
-    <ul>
+    <ul id="subject-set-container">
         @foreach (var set in Model.Subject.Sets)
         {
-            <li><a href="@Url.Action("ShowSet", "Sets", new {SetId = set.SetId})">@set.Name</a></li>
+            <li class="subject-set"><a href="@Url.Action("ShowSet", "Sets", new {SetId = set.SetId})">@set.Name</a></li>
         }
     </ul>
 </div>

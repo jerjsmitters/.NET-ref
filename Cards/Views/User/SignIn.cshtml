@@ -4,18 +4,18 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-
+<div id="sign-in-form">
     @using (Html.BeginForm())
     {
-<div>
-    @Html.LabelFor(m => m.UserName)
-    @Html.TextBoxFor(m => m.UserName)
 
-    @Html.LabelFor(m => m.Password)
-    @Html.TextBoxFor(m => m.Password)
-    <label>
-        @Html.CheckBoxFor(m => m.RememberMe) @Html.DisplayNameFor(m => m.RememberMe)
-    </label>
-    <input type="submit" />
-</div>
+        @Html.LabelFor(m => m.UserName)
+        @Html.TextBoxFor(m => m.UserName)
+
+        @Html.LabelFor(m => m.Password)
+        @Html.TextBoxFor(m => m.Password)
+        <label>
+            @Html.CheckBoxFor(m => m.RememberMe) @Html.DisplayNameFor(m => m.RememberMe)
+        </label>
+        <input type="submit" />
     }
+</div>

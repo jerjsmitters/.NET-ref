@@ -187,6 +187,7 @@
     <Compile Include="Security\ApplicationSignInManager.cs" />
     <Compile Include="Security\ApplicationUserManager.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\Set\TestViewModel.cs" />
     <Compile Include="ViewModels\User\RegisterViewModel.cs" />
     <Compile Include="ViewModels\Set\AddCardViewModel.cs" />
     <Compile Include="ViewModels\Set\AddSetViewModel.cs" />
@@ -208,6 +209,9 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="img\plus.svg" />
+    <Content Include="img\user.svg" />
+    <Content Include="Scripts\app.js" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -236,6 +240,7 @@
     <Content Include="Scripts\jquery-3.3.1.slim.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.flip.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -249,7 +254,13 @@
     <Content Include="Scripts\umd\popper-utils.min.js" />
     <Content Include="Scripts\umd\popper.js" />
     <Content Include="Scripts\umd\popper.min.js" />
+    <Content Include="Styles\forms.css" />
+    <Content Include="Styles\main.css" />
+    <Content Include="Styles\showset.css" />
+    <Content Include="Styles\subject.css" />
+    <Content Include="Styles\test.css" />
     <Content Include="ToDo.txt" />
+    <Content Include="img\avatar.svg" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -284,6 +295,8 @@
     <Content Include="Views\User\Register.cshtml" />
     <Content Include="Views\User\SignIn.cshtml" />
     <Content Include="Views\Shared\_Header.cshtml" />
+    <Content Include="Views\Sets\UserSet.cshtml" />
+    <Content Include="Views\Sets\Test.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

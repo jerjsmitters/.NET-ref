@@ -10,32 +10,65 @@
     string UserVisibility(Set set)
     {
         var userId = User.Identity.GetUserId();
-        return (userId == set.UserId) ? "visible" : "hidden";
+        return (userId == set.UserId) ? "flex" : "none";
+    }
+
+    string DescriptionHelper()
+    {
+        return (Model.Set.Description == null) ? "No description available" : Model.Set.Description;
     }
 }
 
+
+
 <!--To do: Button for cram mode-->
-<div>
-    <h4>@Model.Set.Name</h4>
-    <h5>Owner: @Model.Set.User.UserName</h5>
-    <a href="@Url.Action("Index", "Sets")">Back</a>
-    <a href="@Url.Action("AddCard", "Sets", new {SetId = Model.Set.SetId})"
-       style="visibility: @UserVisibility(Model.Set)">
-        Add Card
-    </a>
-    <ul>
+<div id="showset-container">
+    <h2 id="showset-title">@Model.Set.Name</h2>
+    <div style="display: @UserVisibility(Model.Set)" id="set-operations">
+        <div>
+            <a href="@Url.Action("EditSet", "Sets", new {SetId = Model.Set.SetId})"
+               id="edit-set-button">
+                Edit Set
+            </a>
+            <a href="@Url.Action("DeleteSet", "Sets", new {SetId = Model.Set.SetId})"
+               id="delete-set-button">
+                Delete Set
+            </a>
+        </div>
+        <a href="@Url.Action("AddCard", "Sets", new {SetId = Model.Set.SetId})"
+           id="add-card-button">
+            Add Card
+        </a>
+    </div>
+    <div id="showset-description-show">Details</div>
+    <div id="showset-description">
+        <span id="close-description-button">x</span>
+        <h4>Details</h4>
+        Description: @DescriptionHelper() <br />
+        Owner: @Model.Set.User.UserName <br />
+        Subject: @Model.Set.Subject.Name <br />
+        Time Created: @Model.Set.Date <br />
+        Card Count: @Model.Set.CardCount
+    </div>
+
+    <ul id="card-container">
         @foreach (var card in Model.Set.Cards)
         {
-            <li>
-                <ul>
-                    <li>@card.Front</li>
-                    <li>@card.Back</li>
-                </ul>
-                <a href="@Url.Action("EditCard", "Sets", new {SetId = Model.Set.SetId, CardId = card.CardId})"
-                   style="visibility: @UserVisibility(Model.Set)">Edit</a>
-                <a href="@Url.Action("DeleteCard", "Sets", new {SetId = Model.Set.SetId, CardId = card.CardId})"
-                   style="visibility: @UserVisibility(Model.Set)">Delete</a>
+            <li class="card-unit">
+                <div class="card">
+                    <div class="card-front">@card.Front</div>
+                    <div class="card-back">@card.Back</div>
+                </div>
+                <div class="card-operations">
+                    <a href="@Url.Action("EditCard", "Sets", new {SetId = Model.Set.SetId, CardId = card.CardId})"
+                       style="display: @UserVisibility(Model.Set)"
+                       class="edit-card-button">Edit</a>
+                    <a href="@Url.Action("DeleteCard", "Sets", new {SetId = Model.Set.SetId, CardId = card.CardId})"
+                       style="display: @UserVisibility(Model.Set)"
+                       class="delete-card-button">Delete</a>
+                </div>
             </li>
         }
     </ul>
 </div>
+
