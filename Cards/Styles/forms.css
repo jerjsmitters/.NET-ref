@@ -1,15 +1,18 @@
-﻿#set-form-section,
-#card-form-section {
+﻿#set-form-section, /*whole form section styles*/
+#card-form-section,
+#register-form-section,
+#sign-in-form-section {
     padding: 0 10px;
     color: white;
 }
 
-#set-form,
-#card-form {
+#set-form, /*form styles*/
+#card-form,
+#register-form,
+#sign-in-form {
     padding: 20px;
-    border: 2px solid rgba(0, 10, 27, 0.41);
     border-radius: 5px;
-    background-color: rgba(12, 61, 117,0.6);
+    background-color: #449DD1;
 }
 
 .set-input-cont{
@@ -17,17 +20,20 @@
     color:white;
 }
 
-.set-input-cont > input,
+.set-input-cont > input, /*form text inputs*/
 .set-input-cont > textarea,
-.card-input-cont > input{
+.card-input-cont > input,
+.register-input-cont > input,
+.sign-in-input-cont > input {
     width: 100%;
     background-color: rgb(244,244,244);
     margin-bottom: 10px;
     height: 30px;
     border: 1px solid rgb(101, 95, 95);
+    padding: 0 7px;
 }
 
-.set-input-cont>textarea{ /*Description*/
+.set-input-cont>textarea{ /*add set description*/
     height: 75px;
     font-family: unset;
     font-size:14px;
@@ -36,15 +42,34 @@
 }
 
 #set-form > form > input, /*Submit button*/
-#card-form > form > input{
+#card-form > form > input,
+#register-form > form > input,
+#sign-in-form > form > input {
     width: 100%;
     height: 32px;
-    background-color: #38608E;
+    background-color: #78C0E0;
     color: rgb(255, 255, 255);
-    border: 2px solid rgba(255, 255, 255, 0.13);
+    border: 2px solid rgba(255, 255, 255, 0.57);
     display: block;
     margin: 10px auto 0;
     letter-spacing: 0.6px;
     font-size: 14px;
+    cursor: pointer;
 }
 
+.input-validation-error{
+    margin-bottom: 0px !important;
+}
+
+.field-validation-error { /*Form error message*/
+    color: rgb(169, 68, 66);
+    background-color: rgb(242, 222, 222);
+    border: 1px solid rgba(210,62,62, 0.73);
+    border-top:none;
+    width: 100%;
+    display: flex;
+    margin: 0px 0 6px;
+    height: 32px;
+    justify-content: center;
+    align-items: center;
+}

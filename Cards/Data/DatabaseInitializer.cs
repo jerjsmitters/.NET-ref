@@ -136,7 +136,95 @@ namespace Cards.Data
                 Hint = "Card18H"
             };
 
-            
+            var card19 = new Card()
+            {
+                Front = "What's the capital of pakistan?",
+                Back = "wasdwasdwasd",
+                Hint = "Card18H"
+            };
+
+            var card20 = new Card()
+            {
+                Front = "what's the capital of Namibia?",
+                Back = "wasdwasdwasdwasd",
+                Hint = "Card18H"
+            };
+
+            var card21 = new Card()
+            {
+                Front = "Question?",
+                Back = "Answer",
+                Hint = "Card18H"
+            };
+
+            var card22 = new Card()
+            {
+                Front = "Another question?",
+                Back = "Another answer",
+                Hint = "Card18H"
+            };
+
+            var card23 = new Card()
+            {
+                Front = "Question",
+                Back = "Answer",
+                Hint = "Card18H"
+
+            };
+
+            var card24 = new Card()
+            {
+                Front = "Question",
+                Back = "Aaaanswer",
+                Hint = "Card18H"
+            };
+
+            var card25 = new Card()
+            {
+                Front = "Quuuuuestion",
+                Back = "aaaanssssssweeeer",
+                Hint = "Card18H"
+            };
+
+            var card26 = new Card()
+            {
+                Front = "question question",
+                Back = "answer answer",
+                Hint = "Card18H"
+            };
+
+            var card27 = new Card()
+            {
+                Front = "question question question",
+                Back = "answer answer answer",
+                Hint = "Card18H"
+            };
+
+            var card28 = new Card()
+            {
+                Front = "qwerty",
+                Back = "ytrewq",
+                Hint = "Card18H"
+            };
+            var card29 = new Card()
+            {
+                Front = "pineapple",
+                Back = "applepine",
+                Hint = "Card18H"
+            };
+            var card30 = new Card()
+            {
+                Front = "mango",
+                Back = "go man!",
+                Hint = "Card18H"
+            };
+            var card31 = new Card()
+            {
+                Front = "what's my favourite skyscraper?",
+                Back = "I don't have one",
+                Hint = "Card18H"
+            };
+
 
 
             var cardList1 = new List<Card>()
@@ -177,6 +265,31 @@ namespace Cards.Data
                 card18
             };
 
+            var cardList6 = new List<Card>()
+            {
+                card19,
+                card20,
+                card21,
+                card22,
+                card23
+            };
+
+            var cardList7 = new List<Card>()
+            {
+                card24,
+                card25,
+                card26,
+                card27
+            };
+
+            var cardList8 = new List<Card>()
+            {
+                card28,
+                card29,
+                card30,
+                card31
+            };
+
             var subject1 = new Subject()
             {
                 Name = "Maths"
@@ -195,6 +308,16 @@ namespace Cards.Data
             var subject4 = new Subject()
             {
                 Name = "History"
+            };
+
+            var subject5 = new Subject()
+            {
+                Name = "Computer Science"
+            };
+
+            var subject6 = new Subject()
+            {
+                Name = "Politics"
             };
 
             var user1 = new User()
@@ -237,6 +360,22 @@ namespace Cards.Data
 
             userManager.Create(george, "wasdwasd");
 
+            var peter = new User()
+            {
+                UserName = "petey02894",
+                Email = "petermld201@aol.com"
+            };
+
+            userManager.Create(peter, "wasdwasd");
+
+            var claire = new User()
+            {
+                UserName = "clairebear",
+                Email = "rabbitchicken42@outlook.com"
+            };
+
+            userManager.Create(claire, "wasdwasd");
+
             var set1 = new Set()
             {
                 Name = "How to tie my shoelaces",
@@ -273,10 +412,208 @@ namespace Cards.Data
                 User = user4
             };
 
+            var set5 = new Set()
+            {
+                Name = "Look at this set",
+                Description = "",
+                Cards = cardList5,
+                Subject = subject5,
+                User = george
+            };
+
+            var set6 = new Set()
+            {
+                Name = "seeeeeeeet",
+                Description = "",
+                Cards = cardList6,
+                Subject = subject3,
+                User = claire
+            };
+
+            var set7 = new Set()
+            {
+                Name = "How to lick your elbow",
+                Description = "set description",
+                Cards = cardList7,
+                Subject = subject6,
+                User = peter
+            };
+
+            var set8 = new Set()
+            {
+                Name = "Lamppost facts",
+                Description = "Surprise, it a set",
+                Cards = cardList8,
+                Subject = subject4,
+                User = claire
+            };
+            var set9 = new Set()
+            {
+                Name = "Dummy Set 9",
+                Description = "",
+                Cards = null,
+                Subject = new Subject { Name = "Dummy Subject 9" },
+                User = claire
+            };
+
+            var set10 = new Set()
+            {
+                Name = "Dummy Set 10",
+                Description = "",
+                Cards = null,
+                Subject = new Subject { Name = "Dummy Subject 10" },
+                User = claire
+            };
+
+            var set11 = new Set()
+            {
+                Name = "Dummy Set 11",
+                Description = "",
+                Cards = null,
+                Subject = new Subject { Name = "Dummy Subject 11" },
+                User = claire
+            };
+
+            var set12 = new Set()
+            {
+                Name = "Dummy Set 12",
+                Description = "",
+                Cards = null,
+                Subject = new Subject { Name = "Dummy Subject 12" },
+                User = claire
+            };
+
+            var set13 = new Set()
+            {
+                Name = "Dummy Set 13",
+                Description = "",
+                Cards = null,
+                Subject = new Subject { Name = "Dummy Subject 13" },
+                User = claire
+            };
+
+            var set14 = new Set()
+            {
+                Name = "Dummy Set 14",
+                Description = "",
+                Cards = null,
+                Subject = new Subject { Name = "Dummy Subject 14" },
+                User = claire
+            };
+
+            var set15 = new Set()
+            {
+                Name = "Dummy Set 15",
+                Description = "",
+                Cards = null,
+                Subject = new Subject { Name = "Dummy Subject 15" },
+                User = claire
+            };
+            var set16 = new Set()
+            {
+                Name = "Dummy Set 16",
+                Description = "",
+                Cards = null,
+                Subject = new Subject { Name = "Dummy Subject 16" },
+                User = claire
+            };
+
+            var set17 = new Set()
+            {
+                Name = "Dummy Set 17",
+                Description = "",
+                Cards = null,
+                Subject = new Subject { Name = "Dummy Subject 17" },
+                User = claire
+            };
+
+            var set18 = new Set()
+            {
+                Name = "Dummy Set 18",
+                Description = "",
+                Cards = null,
+                Subject = new Subject { Name = "Dummy Subject 18" },
+                User = claire
+            };
+
+            var set19 = new Set()
+            {
+                Name = "Dummy Set 19",
+                Description = "",
+                Cards = null,
+                Subject = new Subject { Name = "Dummy Subject 19" },
+                User = claire
+            };
+
+            var set20 = new Set()
+            {
+                Name = "Dummy Set 20",
+                Description = "",
+                Cards = null,
+                Subject = new Subject { Name = "Dummy Subject 20" },
+                User = claire
+            };
+
+            var set21 = new Set()
+            {
+                Name = "Dummy Set 21",
+                Description = "",
+                Cards = null,
+                Subject = new Subject { Name = "Dummy Subject 21" },
+                User = claire
+            };
+
+            var set22 = new Set()
+            {
+                Name = "Dummy Set 22",
+                Description = "",
+                Cards = null,
+                Subject = new Subject { Name = "Dummy Subject 22" },
+                User = claire
+            };
+
+            var set23 = new Set()
+            {
+                Name = "Dummy Set 23",
+                Description = "",
+                Cards = null,
+                Subject = new Subject { Name = "Dummy Subject 23" },
+                User = claire
+            };
+
+            var set24 = new Set()
+            {
+                Name = "Dummy Set 24",
+                Description = "",
+                Cards = null,
+                Subject = new Subject { Name = "Dummy Subject 24" },
+                User = claire
+            };
+
             context.Sets.Add(set1);
             context.Sets.Add(set2);
             context.Sets.Add(set3);
             context.Sets.Add(set4);
+            context.Sets.Add(set5);
+            context.Sets.Add(set6);
+            context.Sets.Add(set7);
+            context.Sets.Add(set8);
+            context.Sets.Add(set9);
+            context.Sets.Add(set10);
+            context.Sets.Add(set11);
+            context.Sets.Add(set12);
+            context.Sets.Add(set13);
+            context.Sets.Add(set14);
+            context.Sets.Add(set15);
+            context.Sets.Add(set16);
+            context.Sets.Add(set17);
+            context.Sets.Add(set18);
+            context.Sets.Add(set19);
+            context.Sets.Add(set20);
+            context.Sets.Add(set21);
+            context.Sets.Add(set22);
+            context.Sets.Add(set23);
+            context.Sets.Add(set24);
 
             context.SaveChanges();
         }

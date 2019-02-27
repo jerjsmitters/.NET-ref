@@ -2,13 +2,26 @@
 
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
+
 }
 
 <div> 
-    <ul id="subject-set-container">
+    <h2>@Model.Subject.Name</h2>
+    <ul id="set-list">
         @foreach (var set in Model.Subject.Sets)
         {
-            <li class="subject-set"><a href="@Url.Action("ShowSet", "Sets", new {SetId = set.SetId})">@set.Name</a></li>
+            <li class="set">
+                <a href="@Url.Action("ShowSet", "Sets", new {SetId = set.SetId})">
+                    <div class="set-main">
+                        <span class="set-name">@set.Name</span> <span class="set-card-count">@set.CardCount Cards</span>
+                    </div>
+                    <div class="set-secondary">
+                        <span class="set-username">
+                            @set.User.UserName
+                        </span>
+                    </div>
+                </a>
+            </li>
         }
     </ul>
 </div>

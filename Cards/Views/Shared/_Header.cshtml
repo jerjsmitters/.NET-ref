@@ -1,4 +1,11 @@
-﻿<div id="nav-bar">
+﻿@{ 
+    string AuthStyle()
+    {
+        return (User.Identity.IsAuthenticated) ? "nav-bar-auth" : "nav-bar-unauth";
+    }
+}
+
+<div id="nav-bar" class="@AuthStyle()">
     <div id="set-bar">
         <ul>
             <li>@Html.ActionLink("Sets", "Index", "Sets")</li>

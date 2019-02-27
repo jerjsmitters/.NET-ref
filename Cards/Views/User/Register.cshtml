@@ -4,23 +4,33 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-
-<div id="register-form">
-    @using (Html.BeginForm())
-    {
-        @Html.LabelFor(m => m.UserName)
-        @Html.TextBoxFor(m => m.UserName)
-
-        @Html.LabelFor(m => m.Email)
-        @Html.TextBoxFor(m => m.Email)
-
-        @Html.LabelFor(m => m.Password)
-        @Html.TextBoxFor(m => m.Password)
-
-        @Html.LabelFor(m => m.ConfirmPassword)
-        @Html.TextBoxFor(m => m.ConfirmPassword)
-
-        <input type="submit" />
-    }
+<div id="register-form-section">
+    <h2>Register</h2>
+    <div id="register-form">
+        @using (Html.BeginForm())
+        {
+            <div class="register-input-cont">
+                @Html.LabelFor(m => m.UserName)
+                @Html.TextBoxFor(m => m.UserName)
+                @Html.ValidationMessageFor(m => m.UserName)
+            </div>
+            <div class="register-input-cont">
+                @Html.LabelFor(m => m.Email)
+                @Html.TextBoxFor(m => m.Email)
+                @Html.ValidationMessageFor(m => m.Email)
+            </div>
+            <div class="register-input-cont">
+                @Html.LabelFor(m => m.Password)
+                @Html.TextBoxFor(m => m.Password)
+                @Html.ValidationMessageFor(m => m.Password)
+            </div>
+            <div class="register-input-cont">
+                @Html.LabelFor(m => m.ConfirmPassword)
+                @Html.TextBoxFor(m => m.ConfirmPassword)
+                @Html.ValidationMessageFor(m => m.ConfirmPassword)
+            </div>
+            <input type="submit" value="Register"/>
+        }
+    </div>
 </div>
 

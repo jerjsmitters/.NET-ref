@@ -3,16 +3,26 @@
     color:white;
 }
 
-#showset-title{
-    margin: 30px 0 25px;
+
+#test-button {
+    display: block;
+    margin-bottom: 10px;
+    height: 55px;
+    line-height: 55px;
+    text-align: center;
+    background-color: rgb(109, 176, 206);
+    color: rgb(255, 255, 255);
+    font-size: 20px;
+    letter-spacing: 0.2px;
+    border-radius: 2px;
 }
 
 #showset-description {
     display: none;
-    background-color: rgb(31, 72, 120);
+    background-color: RGB(25, 43, 194);
     padding: 10px;
     border-radius: 6px;
-    position:relative;
+    position: relative;
 }
 
 #showset-description>h4{
@@ -34,8 +44,8 @@
 
 #showset-description-show {
     text-align: center;
-    border: 1px solid rgba(198,196,196,0.301);
-    background-color: #2861a5;
+    border: 1px solid rgba(198,196,196,0.5);
+    background-color: RGB(25, 43, 194);
     height: 32px;
     line-height: 34px;
     border-radius: 2px;
@@ -51,7 +61,6 @@
 
 .card-unit{
     background-color: white;
-    margin-bottom: 10px;
     position: relative;
 }
 
@@ -59,40 +68,49 @@
 .card-front {
     height: 80px;
     text-align: center;
-    line-height: 80px;
+    width: 100%;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 10px;
 }
 
 .card-front {
     border-bottom: 1px solid rgba(132, 111, 111, 0.56);
 }
 
+/*Margin applied if user is auth (to accom operations box)*/
+.Auth-Card{
+    margin-bottom: 37px;
+}
+
+.Unauth-card{
+    margin-bottom: 37px;
+}
+
+/*User only features*/
 #set-operations {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    margin-bottom: 8px;
+    margin-bottom: 10px;
 }
 
-#set-operations a{
+#set-operations a {
     display: inline-block;
-    color:white;
+    color: white;
     height: 35px;
     line-height: 35px;
-    text-align:center;
+    text-align: center;
     border-radius: 2px;
+    border: 1px solid rgba(245, 245, 245, 0.27);
 }
 
-#add-card-button { /*Add card*/
-    border: 1px solid green;
-    background-color: rgb(101, 200, 109);
-    color: white;
-    width: 110px;
-}
+
 #edit-set-button {
     color: white;
-    background-color: dimgray;
-    width: 80px;
-    border: 1px solid rgb(50, 57, 50);
+    background-color: #192BC2;
+    width: 85px;
 }
 
 #delete-set-button {
@@ -102,6 +120,12 @@
     color: rgb(255, 255, 255);
     font-size: 16px;
     width: 95px;
+}
+
+#add-card-button { 
+    background-color: rgb(101, 200, 109);
+    color: white;
+    width: 80px;
 }
 
 .card-operations {

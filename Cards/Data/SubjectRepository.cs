@@ -28,7 +28,7 @@ namespace Cards.Data
         public Subject Get(int? subjectId)
         {
             return _context.Subjects
-                .Include(s => s.Sets)
+                .Include(s => s.Sets)            
                 .SingleOrDefault(s => s.SubjectId == subjectId);
         }
 

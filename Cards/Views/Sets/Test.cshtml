@@ -3,23 +3,30 @@
 @{
     ViewBag.Title = "Test";
     Layout = "~/Views/Shared/_Layout.cshtml";
+
+    string ShowFirstCard(int id)
+    {
+        return (id != 0) ? "inactive" : null;
+    }
 }
-
-<div class="test-card">
-    <div class="test-card-inner">
-        <div class="test-card-front unflip-front">
-            @Model.Set.Cards[0].Front
+<div id="cards-container">
+    @for(int index = 0; index < Model.Set.Cards.Count; index++)
+    { 
+        <div id="card-@index" class=@ShowFirstCard(index)>
+            <div class="test-card">
+                <div class="test-card-inner">
+                    <div class="test-card-front unflip-front">
+                        @Model.Set.Cards[index].Front
+                    </div>
+                    <div class="test-card-back unflip-back">
+                        @Model.Set.Cards[index].Back
+                    </div>
+                </div>
+            </div>
+            <div class="test-btn-container">
+                <div class="back-btn">←</div>
+                <div class="fwd-btn">→</div>
+            </div>    
         </div>
-        <div class="test-card-back unflip-back">
-            @Model.Set.Cards[0].Back
-        </div>
-    </div>
+    }
 </div>
-<div class="test-btn-container">
-    <div class="back-btn">Back</div>
-    <div class="fwd-btn">Forward</div>
-</div>
-<script>
-
-    
-</script>

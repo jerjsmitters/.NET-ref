@@ -24,8 +24,9 @@ namespace Cards.ViewModels
         [Required(ErrorMessage = "Password is required")]
         [StringLength(255, ErrorMessage = "Must be between 5 and 255 characters", MinimumLength = 5)]
         [DataType(DataType.Password)]
-
         public string Password { get; set; }
+
+        [Display(Name = "Confirm password")]
         [Required(ErrorMessage = "Confirm Password is required")]
         [StringLength(255, ErrorMessage = "Must be between 5 and 255 characters", MinimumLength = 5)]
         [DataType(DataType.Password)]
