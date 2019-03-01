@@ -8,21 +8,21 @@
 <div id="nav-bar" class="@AuthStyle()">
     <div id="set-bar">
         <ul>
-            <li>@Html.ActionLink("Sets", "Index", "Sets")</li>
-            <li>@Html.ActionLink("Subjects", "Index", "Subjects")</li>        
+            <li class="transition-color">@Html.ActionLink("Sets", "Index", "Sets")</li>
+            <li class="transition-color">@Html.ActionLink("Subjects", "Index", "Subjects")</li>        
         </ul>
     </div>
     <div id="user-bar">
         <ul>
             @if (!Request.IsAuthenticated)
             {
-                <li>@Html.ActionLink("Sign In", "SignIn", "User")</li>
-                <li>@Html.ActionLink("Register", "Register", "User")</li>
+                <li id="sign-in-button" class="transition-color">@Html.ActionLink("Sign In", "SignIn", "User")</li>
+                <li id="register-button" class="transition-color">@Html.ActionLink("Register", "Register", "User")</li>
             }
             else
             {
-                <li id="nav-bar-username">@User.Identity.Name</li>
-                <li>@Html.ActionLink("Your Sets", "UserSet", "Sets")</li>
+                <li id="nav-bar-username" class="transition-color">@User.Identity.Name</li>
+                <li id="your-sets-button" class="transition-color">@Html.ActionLink("Your Sets", "UserSet", "Sets")</li>
                 <li>
                     @using (Html.BeginForm("SignOut", "User", FormMethod.Post))
                     {

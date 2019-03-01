@@ -10,7 +10,7 @@ $("#close-description-button").click(function () {
     $("#showset-description").slideUp("fast", function () {
     });
     setTimeout(() => {
-        $("#showset-description-show").css("display", "block");
+        $("#showset-description-show").css("display", "flex");
     }, 130)
 });
 

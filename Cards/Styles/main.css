@@ -40,7 +40,7 @@ h2 {
 }
 
 .nav-bar-auth{
-    padding: 0 0 0 10px;
+    padding: 0;
 }
 
 #nav-bar a {
@@ -80,14 +80,22 @@ h2 {
 
 /*Individual nav buttons*/
 #set-bar>ul>li:first-of-type{ /*Sets*/
-    width: 45px;
+    width: 55px;
 }
 
 #set-bar>ul>li:last-of-type{ /*Subject*/
     width: 75px;
 }
 
-#user-bar>ul>li:nth-of-type(2){ /*Your Sets*/
+#sign-in-button{
+    width: 70px;
+}
+
+#register-button{
+    width: 70px;
+}
+
+#your-sets-button{ /*Your Sets*/
     width: 80px;
 }
 
@@ -100,6 +108,7 @@ h2 {
     height: 64px;
     cursor: pointer;
 }
+
 
 
 /***----Index ----***/
@@ -195,8 +204,52 @@ h2 {
     bottom: 3px;
 }
 
+/***---Subjects---***/
+#subject-section {
+    border-radius: 2px;
+}
+
+#subject-section > h2 {
+    color: white;
+}
+
+#subject-list {
+    list-style: none;
+    padding-left: 0;
+}
+
+.subject:nth-of-type(2n+1) {
+    background-color: #192BC2;
+}
+
+.subject:nth-of-type(2n) {
+    background-color: #449DD1;
+}
+
+.subject {
+    height: 60px;
+    text-align: center;
+}
+
+.subject > a {
+    cursor: pointer;
+    height: 60px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content:center;
+    color: white;
+}
+
+
+
+
 /*Tablet breakpoint*/
 @media(min-width:600px){
+    h2{
+        margin: 30px 0;
+        padding: 0 20px;
+    }
     #nav-bar-username {
         color: rgb(192, 255, 180);
         display: block;
@@ -206,27 +259,50 @@ h2 {
         letter-spacing: 0.5px;
     }
 
+    .set,
+    .subject,
+    .set>a,
+    .subject>a{
+        height: 80px;
+    }
+
+    #set-list-header{
+        padding-right:20px;
+    }
+
+    .subject{
+        font-size: 18px;
+    }
+
+
     #set-bar > ul > li:first-of-type { /*Sets*/
         width: 80px;
     }
 
     #set-bar > ul > li:last-of-type, /*Subject*/
-    #user-bar > ul > li:nth-of-type(2),/*Your Sets*/
+    #your-sets-button,
+    #sign-in-button,
+    #register-button,
     #sign-out-button{ /*Sign out*/    
         width: 100px;
     }    
 }
+
+
+
+
 
 @media(min-width: 1200px){
 
     /*general*/
     h2{      
         margin: 65px 0;
-        font-size: 32px;
+        font-size: 42px;
     }
 
     h2,
-    #set-list {
+    #set-list,
+    #subject-list{
         padding: 0 110px;
     }
 
@@ -251,32 +327,64 @@ h2 {
         padding: 0 110px;
     }
 
-    /*set list*/
-    #add-set-icon{
-        display: none;
+    #set-bar > ul > li:last-of-type, /*Subject*/
+    #your-sets-button,
+    #register-button,
+    #sign-in-button,
+    #sign-out-button { /*Sign out*/
+        width: 120px;
+    }  
+
+    /*set/subject list*/
+    #set-list-header{
+        margin-bottom:25px;
     }
 
-    #set-list{
+    #subject-section>h2{
+        margin-bottom: 90px;
+    }
+
+    #add-set-icon{
+        width:70px;
+        height:70px;
+        margin-right: 108px;
+    }
+
+    #set-list,
+    #subject-list{
         display:flex;
         flex-direction: row;
         flex-wrap:wrap;
         justify-content: space-between;
     }
 
-    .set{
+    .set,
+    .subject{
         width:49.78%;
         margin-bottom: 5px;
+        height: 90px;   
+        padding:0;
+    }
+
+    .set > a,
+    .subject > a {
         height: 90px;
         padding: 0 20px;
     }
-    #set-list > .set:nth-of-type(4n) {
+
+    .set > a {
+        display: block;
+    }       
+
+    #set-list > .set:nth-of-type(4n),
+    #subject-list > .subject:nth-of-type(4n),
+    #set-list > .set:nth-of-type(4n+1),
+    #subject-list > .subject:nth-of-type(4n+1) {
         background-color: #192BC2;
     }
-    #set-list > .set:nth-of-type(4n+1) {
-        background-color: #192BC2;
-    }
-    
-    #set-list > .set:nth-of-type(4n+3){
+
+    #set-list > .set:nth-of-type(4n+3),
+    #subject-list > .subject:nth-of-type(4n+3) {
         background-color: #449DD1;
     }
 
@@ -303,15 +411,19 @@ h2 {
         width: 100px;
     }
 
-    #set-bar > ul > li:last-of-type, /*Subject*/
-    #user-bar > ul > li:nth-of-type(2), /*Your Sets*/
-    #sign-out-button { /*Sign out*/
-        width: 120px;
-    }  
+    .subject{
+        font-size:18px;
+    }
 }
+
+
+
+
+
 
 @media(min-width:1600px){
     #set-list,
+    #subject-list,
     h2{
         padding: 0 160px;
     }
@@ -325,17 +437,42 @@ h2 {
         padding: 0 160px;
     }
 
-    .set{
+    #add-set-icon{
+        margin-right: 158px;
+    }
+    .set,
+    .subject{
         width: 33.25%;
         height: 110px;
-        padding: 0 25px;
         margin-bottom: 3px;
     }
-    #set-list > .set:nth-of-type(2n+1) {
+
+    .set > a,
+    .subject > a {
+        height: 110px;
+        padding: 0 25px;
+    }
+
+    #set-list > .set:nth-of-type(2n+1),
+    #subject-list > .subject:nth-of-type(2n+1) {
         background-color: #192BC2;
     }
 
-    #set-list > .set:nth-of-type(2n) {
+    #set-list > .set:nth-of-type(2n),
+    #subject-list > .subject:nth-of-type(2n) {
         background-color: #449DD1;
+    }
+}
+
+@media(min-width:1800px){
+    #set-list,
+    #subject-list,
+    h2 ,
+    #nav-bar{
+        padding: 0 260px;
+    }
+
+    #add-set-icon {
+        margin-right: 258px;
     }
 }

@@ -4,13 +4,12 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <div id="subject-section">
-    <h2>Subjects</h2>
-    <div id="subject-container"> 
+    <h2>Subjects</h2>   
         <ul id="subject-list">
             @foreach (var subj in Model.Subjects)
             {
-                <li class="subject"><a href="@Url.Action("ShowSubject", "Subjects", new {SubjectId = subj.SubjectId})">@subj.Name (@subj.SetCount Available)</a></li>
+                <li class="subject transition-color"><a href="@Url.Action("ShowSubject", "Subjects", new {SubjectId = subj.SubjectId})">@subj.Name (@subj.SetCount Available)</a></li>
             }
         </ul>
-    </div>
+    
 </div>

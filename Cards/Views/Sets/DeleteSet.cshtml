@@ -3,13 +3,16 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div id="delete-set-form">
-    @using (Html.BeginForm())
-    {
-    <div>
-        Are you sure you want to delete "@ViewBag.Set.Name"?
-        <input type="submit" />
+<div id="delete-set-form-section">
+    <h2>Delete Set</h2>
+    <div id="delete-set-form">
+        @using (Html.BeginForm())
+         {
+             <p>
+              Are you sure you want to delete "@ViewBag.Set.Name"?
+             </p>
+             <input type="submit" value="Confirm" class="transition-color"/>
+         }
     </div>
-    }
 </div>
 

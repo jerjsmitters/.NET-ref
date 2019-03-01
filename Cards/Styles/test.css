@@ -1,7 +1,11 @@
-﻿
+﻿#cards-container {
+    padding-top: 35px;
+    background-color: RGB(25, 43, 194);
+}
+
 .test-card {
     perspective: 800px;
-    height: 200px;
+    height: 250px;
 }
 
 .test-card-inner{
@@ -16,7 +20,7 @@
 .test-card-back {
     position: absolute;
     width: 100%;
-    height: 200px;
+    height: 250px;
     backface-visibility: hidden;
     background-color: white;
     border: 1px black solid;
@@ -82,4 +86,68 @@
 
 .inactive{
     display: none;
+}
+
+@media (min-width: 600px){
+    #cards-container{
+        width: 500px;
+        margin: 0 auto;      
+    }
+
+    .test-card,
+    .test-card-front,
+    .test-card-back{
+        height: 300px;
+    }
+}
+
+@media(min-width: 900px){
+    #cards-container {
+        width: 600px;
+        margin: 0 auto;
+    }
+
+    .test-card,
+    .test-card-front,
+    .test-card-back {
+        height: 400px;
+    }
+
+    .test-card-front,
+    .test-card-back{
+        font-size: 26px;
+    }
+}
+
+@media (min-width: 1200px){
+    #cards-container {
+        width: 800px;
+        margin: 0 auto;
+    }
+
+    .test-card,
+    .test-card-front,
+    .test-card-back {
+        height: 500px;
+    }
+
+    .test-btn-container{
+        height: 90px;
+    }
+
+    .back-btn,
+    .fwd-btn {
+        font-size: 33px;
+        bottom: 15px;
+        width: 160px;
+        height: 58px;
+        line-height: 60px;
+    }
+
+    .back-btn{
+        left: 210px;
+    }
+    .fwd-btn{
+        right: 210px;
+    }
 }

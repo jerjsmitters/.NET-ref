@@ -1,8 +1,13 @@
-﻿#showset-container{
+﻿
+/***--Styles--***/
+#showset-container{
     padding: 0 10px;
     color:white;
 }
 
+#showset-title{
+    margin: 40px 0;
+}
 
 #test-button {
     display: block;
@@ -15,6 +20,7 @@
     font-size: 20px;
     letter-spacing: 0.2px;
     border-radius: 2px;
+    border: 1px solid rgb(203, 203, 221);
 }
 
 #showset-description {
@@ -34,12 +40,13 @@
 #close-description-button {
     position: absolute;
     top: 0px;
-    right: 10px;
+    right: 0px;
     cursor: pointer;
-    width: 18px;
+    width: 30px;
     text-align: center;
     z-index: 100;
     font-size: 18px;
+    border-radius: 2px;
 }
 
 #showset-description-show {
@@ -51,6 +58,9 @@
     border-radius: 2px;
     margin-bottom: 40px;
     cursor: pointer;
+    display:flex;
+    align-items: center;
+    justify-content: center;
 }
 
 #card-container {
@@ -66,7 +76,7 @@
 
 .card-back,
 .card-front {
-    height: 80px;
+    height: 100px;
     text-align: center;
     width: 100%;
     display:flex;
@@ -80,12 +90,12 @@
 }
 
 /*Margin applied if user is auth (to accom operations box)*/
-.Auth-Card{
-    margin-bottom: 37px;
+.owner-card{
+    margin-bottom: 51px;
 }
 
-.Unauth-card{
-    margin-bottom: 37px;
+.non-owner-card{
+    margin-bottom: 10px;
 }
 
 /*User only features*/
@@ -96,21 +106,20 @@
     margin-bottom: 10px;
 }
 
-#set-operations a {
+.showset-button {
     display: inline-block;
     color: white;
-    height: 35px;
-    line-height: 35px;
+    height: 40px;
+    line-height: 40px;
     text-align: center;
     border-radius: 2px;
     border: 1px solid rgba(245, 245, 245, 0.27);
+    width: 32%;
 }
-
 
 #edit-set-button {
     color: white;
     background-color: #192BC2;
-    width: 85px;
 }
 
 #delete-set-button {
@@ -119,31 +128,122 @@
     font-family: 'Catamaran', sans-serif;
     color: rgb(255, 255, 255);
     font-size: 16px;
-    width: 95px;
 }
 
 #add-card-button { 
     background-color: rgb(101, 200, 109);
     color: white;
-    width: 80px;
 }
 
 .card-operations {
     position: absolute;
-    bottom: -27px;
+    bottom: -40px;
     display: flex;
     justify-content: center;
     width: 100%;
+    height: 40px;
     background: lightblue;
 }
 
 .edit-card-button {
-    margin-right: 30px;
+    width: 60px;
     color: rgb(44, 35, 35);
+    justify-content: center;
+    align-items: center;
 }
 
-.delete-card-button{
-    color:red;
+.delete-card-button {
+    color: red;
+    width:80px;
+    justify-content: center;
+    align-items: center;
 }
 
+@media(min-width:600px){
+    #showset-title{
+        padding:0;
+        margin: 40px 0 50px;
+    }
+    #showset-container{
+        width: 603px;
+        margin: 0 auto;
+    }
+
+    #showset-description {
+        padding: 20px 38px;
+    }
+
+    .card-front,
+    .card-back{
+        height: 120px;
+        font-size: 18px;
+    }
+
+}
+
+@media(min-width: 1200px) {
+    #showset-title {
+        margin: 70px 0;
+    }
+
+    .card-front,
+    .card-back {
+        height: 185px;
+        font-size: 19px;
+    }
+
+    .edit-card-button,
+    .delete-card-button{
+        font-size: 17px;
+    }
+}
+
+@media(min-width: 1600px) {
+    #showset-title {
+        margin: 90px 0 60px;
+    }
+
+    #showset-container {
+        width: 1300px;
+    }
+
+    .showset-button{
+        height: 50px;
+        line-height: 50px;
+        font-size: 18px;
+    }
+
+    #card-container {
+        margin-top: 40px;
+    }
+
+    #desktop-flex {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    #desktop-flex > a,
+    #desktop-flex > div,
+    .card-unit {
+        display: block;
+        width: 49.5%;
+    }
+
+    #showset-description-show,
+    #test-button {
+        margin: 0;
+    }
+
+    #showset-description-show {
+        height: 55px;
+        font-size: 20px;
+    }
+
+    #card-container {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+}
 

@@ -1,0 +1,125 @@
+﻿/**Transition class (global)**/
+.transition-everything{
+    transition: 0.05s ease-out;
+}
+
+.transition-color{
+   transition: background-color 0.1s ease-out;
+}
+/***Sets and Subjects***/
+#set-bar > ul > li:first-of-type:hover,
+#set-bar > ul > li:last-of-type:hover,
+#your-sets-button:hover,
+#sign-in-button:hover,
+#register-button:hover {
+    background-color: rgb(21, 5, 120);
+}
+
+#sign-out-button:hover {
+    background-color: rgb(240, 83, 83);
+}
+
+#add-set-icon:hover {
+    width: 43px;
+    height: 43px;
+}
+
+#set-list > .set:nth-of-type(2n+1):hover,
+#subject-list > .subject:nth-of-type(2n+1):hover {
+    background-color: rgb(41, 59, 210);
+}
+
+#set-list > .set:nth-of-type(2n):hover,
+#subject-list > .subject:nth-of-type(2n):hover {
+    background-color: rgb(93, 167, 210);
+}
+
+@media(min-width: 1200px) {
+    #set-list > .set:nth-of-type(4n):hover,
+    #subject-list > .subject:nth-of-type(4n):hover,
+    #set-list > .set:nth-of-type(4n+1):hover,
+    #subject-list > .subject:nth-of-type(4n+1):hover {
+        background-color: rgb(41, 59, 210);
+    }
+
+    #set-list > .set:nth-of-type(4n+3):hover,
+    .subject:nth-of-type(2n):hover,
+    #subject-list > .subject:nth-of-type(4n+3):hover {
+        background-color: rgb(93, 167, 210);
+    }
+
+    #add-set-icon:hover {
+        width: 75px;
+        height: 75px;
+    }
+}
+
+@media(min-width: 1600px) {
+    #set-list > .set:nth-of-type(2n+1):hover,
+    #subject-list > .subject:nth-of-type(2n+1):hover {
+        background-color: rgb(41, 59, 210);
+    }
+
+    #set-list > .set:nth-of-type(2n):hover,
+    #subject-list > .subject:nth-of-type(2n):hover {
+        background-color: rgb(93, 167, 210);
+    }
+}
+
+/***---showset---***/
+#test-button:hover {
+    background-color:rgb(150, 195, 215);
+}
+
+#showset-description-show:hover,
+#edit-set-button:hover{
+    background-color: rgb(41, 59, 210);
+}
+
+
+#delete-set-button:hover {
+    background-color: rgb(240, 83, 83);
+}
+
+#add-card-button:hover {
+    background-color: rgb(135, 195, 140);
+}
+
+#close-description-button:hover{
+    background-color: red;
+}
+
+.edit-card-button:hover,
+.delete-card-button:hover {
+    background-color:rgba(255, 255, 255, 0.45);
+}
+/***---forms---***/
+#set-form > form > input:hover, /*Submit button*/
+#card-form > form > input:hover,
+#register-form > form > input:hover,
+#sign-in-form > form > input:hover,
+#delete-card-form > form > input:hover,
+#delete-set-form > form > input:hover {
+    background-color: rgb(150, 195, 215);
+}
+
+
+/***---test---***/
+.back-btn:active,
+.fwd-btn:active {
+    box-shadow: 0px 1px 3px rgb(0,0,0);
+    bottom: 2px;
+}
+
+.back-btn:hover,
+.fwd-btn:hover {
+    background-color: rgba(68, 157, 209, 0.35);
+}
+
+@media(min-width: 1200px){
+    .back-btn:active,
+    .fwd-btn:active {
+        box-shadow: 0px 0px 3px rgb(0,0,0);
+        bottom: 12px;
+    }
+}

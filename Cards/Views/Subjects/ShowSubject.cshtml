@@ -10,7 +10,7 @@
     <ul id="set-list">
         @foreach (var set in Model.Subject.Sets)
         {
-            <li class="set">
+            <li class="set transition-color">
                 <a href="@Url.Action("ShowSet", "Sets", new {SetId = set.SetId})">
                     <div class="set-main">
                         <span class="set-name">@set.Name</span> <span class="set-card-count">@set.CardCount Cards</span>

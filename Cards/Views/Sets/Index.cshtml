@@ -24,20 +24,21 @@
 <div>
     <div id="set-list-header">
         <h2>@GetTitle()</h2>
-        <a href="@Url.Action("AddSet", "Sets")"><img src="~/img/plus.svg" id="add-set-icon" /></a>
+        <a href="@Url.Action("AddSet", "Sets")"><img src="~/img/plus.svg" id="add-set-icon" class="transition-everything"/></a>
     </div>
 
     <ul id="set-list">
         @foreach (var set in Model.Sets)
         {
-            <li class="set">
+            <li class="set transition-color">
                 <a href="@Url.Action("ShowSet", "Sets", new {SetId = set.SetId})">
                     <div class="set-main">
                         <span class="set-name">@set.Name</span> <span class="set-card-count">@set.CardCount Cards</span>
                     </div>
                     <div class="set-secondary">
                         <span class="set-username"
-                              style="visibility:@Visibility()">@set.User.UserName
+                              style="visibility:@Visibility()">
+                            @set.User.UserName
                         </span>
                     </div>
                 </a>

@@ -20,7 +20,7 @@
 
     string ExtraMarginIfAuth()
     {
-        return (User.Identity.IsAuthenticated) ? "Auth-card" : "Unauth-card";
+        return (User.Identity.GetUserId() == Model.Set.UserId) ? "owner-card" : "non-owner-card";
     }
 }
 
@@ -30,34 +30,42 @@
 <div id="showset-container">
     <h2 id="showset-title">@Model.Set.Name</h2>
     <div style="display: @UserVisibility(Model.Set)" id="set-operations">
-        <div>
-            <a href="@Url.Action("EditSet", "Sets", new {SetId = Model.Set.SetId})"
-               id="edit-set-button">
-                Edit Set
-            </a>
-            <a href="@Url.Action("DeleteSet", "Sets", new {SetId = Model.Set.SetId})"
-               id="delete-set-button">
-                Delete Set
-            </a>
-        </div>
+        
+        <a href="@Url.Action("EditSet", "Sets", new {SetId = Model.Set.SetId})"
+            id="edit-set-button"
+            class="showset-button transition-color">
+            Edit Set
+        </a>
+        <a href="@Url.Action("DeleteSet", "Sets", new {SetId = Model.Set.SetId})"
+            id="delete-set-button"
+            class="showset-button transition-color">
+            Delete Set
+        </a>
+        
         <a href="@Url.Action("AddCard", "Sets", new {SetId = Model.Set.SetId})"
-           id="add-card-button">
+           id="add-card-button"
+           class="showset-button transition-color">
             Add Card
         </a>
     </div>
-    <a href="@Url.Action("Test", "Sets", new { SetId = Model.Set.SetId })"
-       id="test-button">
-        Test me!
-    </a>
-    <div id="showset-description-show">Details</div>
-    <div id="showset-description">
-        <span id="close-description-button">x</span>
-        <h4>Details</h4>
-        Description: @DescriptionHelper() <br />
-        Owner: @Model.Set.User.UserName <br />
-        Subject: @Model.Set.Subject.Name <br />
-        Time Created: @Model.Set.Date <br />
-        Card Count: @Model.Set.CardCount
+    <div id="desktop-flex">
+        <a href="@Url.Action("Test", "Sets", new { SetId = Model.Set.SetId })"
+           id="test-button"
+           class="transition-color">
+            Test me!
+        </a>
+        <div>
+            <div id="showset-description-show" class="transition-color">Details</div>
+            <div id="showset-description">
+                <span id="close-description-button" class="transition-color">x</span>
+                <h4>Details</h4>
+                Description: @DescriptionHelper() <br />
+                Owner: @Model.Set.User.UserName <br />
+                Subject: @Model.Set.Subject.Name <br />
+                Time Created: @Model.Set.Date <br />
+                Card Count: @Model.Set.CardCount
+            </div>
+        </div>
     </div>
 
     <ul id="card-container">
@@ -68,13 +76,13 @@
                     <div class="card-front">@card.Front</div>
                     <div class="card-back">@card.Back</div>
                 </div>
-                <div class="card-operations">
+                <div class="card-operations" style="display: @UserVisibility(Model.Set)">
                     <a href="@Url.Action("EditCard", "Sets", new {SetId = Model.Set.SetId, CardId = card.CardId})"
                        style="display: @UserVisibility(Model.Set)"
-                       class="edit-card-button">Edit</a>
+                       class="edit-card-button card transition-color">Edit</a>
                     <a href="@Url.Action("DeleteCard", "Sets", new {SetId = Model.Set.SetId, CardId = card.CardId})"
                        style="display: @UserVisibility(Model.Set)"
-                       class="delete-card-button">Delete</a>
+                       class="delete-card-button transition-color">Delete</a>
                 </div>
             </li>
 

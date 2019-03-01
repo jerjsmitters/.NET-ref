@@ -255,9 +255,9 @@
     <Content Include="Scripts\umd\popper.js" />
     <Content Include="Scripts\umd\popper.min.js" />
     <Content Include="Styles\forms.css" />
+    <Content Include="Styles\hover-effects.css" />
     <Content Include="Styles\main.css" />
     <Content Include="Styles\showset.css" />
-    <Content Include="Styles\subject.css" />
     <Content Include="Styles\test.css" />
     <Content Include="ToDo.txt" />
     <Content Include="img\avatar.svg" />

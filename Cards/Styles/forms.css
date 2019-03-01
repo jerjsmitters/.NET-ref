@@ -1,7 +1,9 @@
 ﻿#set-form-section, /*whole form section styles*/
 #card-form-section,
 #register-form-section,
-#sign-in-form-section {
+#sign-in-form-section,
+#delete-card-form-section,
+#delete-set-form-section {
     padding: 0 10px;
     color: white;
 }
@@ -9,7 +11,9 @@
 #set-form, /*form styles*/
 #card-form,
 #register-form,
-#sign-in-form {
+#sign-in-form,
+#delete-card-form,
+#delete-set-form {
     padding: 20px;
     border-radius: 5px;
     background-color: #449DD1;
@@ -33,6 +37,13 @@
     padding: 0 7px;
 }
 
+#delete-card-form > form > p, /*Delete set/card text*/
+#delete-set-form > form > p {
+    font-size: 17px;
+    line-height: 27px;
+    margin: 10px 0 20px;
+}
+
 .set-input-cont>textarea{ /*add set description*/
     height: 75px;
     font-family: unset;
@@ -44,7 +55,9 @@
 #set-form > form > input, /*Submit button*/
 #card-form > form > input,
 #register-form > form > input,
-#sign-in-form > form > input {
+#sign-in-form > form > input,
+#delete-card-form>form>input,
+#delete-set-form>form>input{
     width: 100%;
     height: 32px;
     background-color: #78C0E0;
@@ -72,4 +85,153 @@
     height: 32px;
     justify-content: center;
     align-items: center;
+}
+
+@media(min-width: 450px){
+    #set-form-section, /*whole form section styles*/
+    #card-form-section,
+    #register-form-section,
+    #sign-in-form-section,
+    #delete-card-form-section,
+    #delete-set-form-section {
+        padding: 0 0;
+        margin: 0 auto;
+        width: 350px;
+    }
+}
+
+@media(min-width: 600px) {
+    #set-form-section > h2,
+    #card-form-section > h2,
+    #register-form-section > h2,
+    #sign-in-form-section > h2,
+    #delete-card-form-section > h2,
+    #delete-set-form-section > h2 {
+        padding: 0;
+        margin: 50px 0;
+    }
+
+    #set-form-section, /*whole form section styles*/
+    #card-form-section,
+    #register-form-section,
+    #sign-in-form-section,
+    #delete-card-form-section,
+    #delete-set-form-section {
+        padding: 0 0;
+        margin: 0 auto;
+        width: 480px;
+    }
+
+    #set-form,
+    #card-form,
+    #register-form,
+    #sign-in-form,
+    #delete-card-form,
+    #delete-set-form {
+        padding: 30px 35px 25px;
+    }
+
+    .set-input-cont,
+    .card-input-cont,
+    .register-input-cont,
+    .sign-in-input-cont {
+        margin-bottom: 5px;
+    }
+
+    #delete-card-form > form > p, /*delete card/set text*/
+    #delete-set-form > form > p {
+        font-size: 19px;
+        margin: 10px 0 40px;
+    }
+
+    .set-input-cont > label, /*input labels*/
+    .card-input-cont > label,
+    .register-input-cont > label,
+    .sign-in-input-cont > label {
+        font-size: 18px;
+    }
+
+    .set-input-cont > input, /*text inputs*/
+    .card-input-cont > input,
+    .register-input-cont > input,
+    .sign-in-input-cont > input {
+        height: 40px;
+        margin-top: 5px;
+        font-size:16px;
+        padding:0 11px;
+    }
+
+    #set-form > form > input, /*Submit button*/
+    #card-form > form > input,
+    #register-form > form > input,
+    #sign-in-form > form > input,
+    #delete-card-form > form > input,
+    #delete-set-form > form > input{
+        height: 50px;
+        font-size: 17px;
+        margin: 15px auto 10px;
+    }
+}
+
+@media(min-width:1200px){
+    .set-input-cont,
+    .card-input-cont,
+    .register-input-cont,
+    .sign-in-input-cont {
+        margin-bottom: 10px;
+    }
+
+    #set-form-section > h2,
+    #card-form-section > h2,
+    #register-form-section > h2,
+    #sign-in-form-section > h2,
+    #delete-card-form-section > h2,
+    #delete-set-form-section > h2{
+        margin-top:65px;
+    }
+}
+
+@media(min-width: 1600px){
+    #set-form,
+    #card-form,
+    #register-form,
+    #sign-in-form,
+    #delete-card-form,
+    #delete-set-form {
+        width: 600px;
+        padding: 40px 35px 30px;
+    }
+
+    .set-input-cont > input, /*text inputs*/
+    .card-input-cont > input,
+    .register-input-cont > input,
+    .sign-in-input-cont > input {
+        height: 50px;
+    }
+
+    .set-input-cont,
+    .card-input-cont,
+    .register-input-cont,
+    .sign-in-input-cont {
+        margin-bottom: 20px;
+    }
+
+    #delete-card-form > form > p, /*delete card/set text*/
+    #delete-set-form > form > p{
+        font-size: 20px;
+        margin: 10px 0 40px;
+    }
+
+    .set-input-cont > label, /*input labels*/
+    .card-input-cont > label,
+    .register-input-cont > label,
+    .sign-in-input-cont > label {
+        font-size: 20px;
+    }
+
+    #remember-me{
+        font-size:18px;
+    }   
+
+
 }
